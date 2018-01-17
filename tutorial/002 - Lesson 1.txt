@@ -1,0 +1,6 @@
+In the first lesson we will build a minimal datamodel which is capable to save scoring.
+Snooker is played with two players. A player should have a name and first name.
+Every game in snooker is called a Frame, a Frame should have the score of both players.
+It should also contain the start- and end-time of the frame.
+Finally, we have a match, witch links the two players together with the frames they played. In addition
+it should contain the date on which the match is played and the number of frames that decides the match.

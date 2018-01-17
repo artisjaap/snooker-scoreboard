@@ -1,0 +1,13 @@
+Scope
+This project will implement a snooker scoreboard inspired by the gertronic digtal scoreboard.
+It should run on a tablet and remote controlled over websockets with an other input device (e.g. Iphone).
+The main purpose is to get more experienced with Spring and Hibernate. Altought this is a good candidate to use a document store (e.g. MongoDB) one of the main goals is gain experience with Hibernate and JPQL. In addition, a second datastore will be implemented using a document store.
+
+About Git
+- The main repository contains the latest version
+- The start of the lesson will be available as a branch.
+ E.g. branch lesson-1 will contain the '002 - Lesson 1.txt' file and explains what this lesson is all about
+ the next branch (lesson-2 in this case), will include the solution of the previous lesson and will contain a new lesson.txt file describing the next lesson.
+
+
+
