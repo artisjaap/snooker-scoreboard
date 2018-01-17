@@ -1,0 +1,8 @@
+Now that we have our basic datamodel. It is time to create some actions. We want to:
+- create a player
+- create a match for two players
+- add a frame to an existing match
+- request match statistics (for now, player names, intermediate position, current frame)
+
+*hint, intermadiate position: If game is finished, you can determine who's the winner
+       current frame is the one without endDate

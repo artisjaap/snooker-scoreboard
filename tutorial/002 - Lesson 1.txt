@@ -4,3 +4,11 @@ Every game in snooker is called a Frame, a Frame should have the score of both p
 It should also contain the start- and end-time of the frame.
 Finally, we have a match, witch links the two players together with the frames they played. In addition
 it should contain the date on which the match is played and the number of frames that decides the match.
+
+
+motivation
+----------
+
+- Entities Frame, Match and Player are created in the package be.qnh.gertronic.snooker.domain
+- An H2 in memory DB is configured to check the DB:
+  - If the app is executed, you can access http://localhost:8080/h2 and verify the generated model.
