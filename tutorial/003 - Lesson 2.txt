@@ -4,5 +4,16 @@ Now that we have our basic datamodel. It is time to create some actions. We want
 - add a frame to an existing match
 - request match statistics (for now, player names, intermediate position, current frame)
 
-*hint, intermadiate position: If game is finished, you can determine who's the winner
+*hint, intermediate position: If game is finished, you can determine who's the winner
        current frame is the one without endDate
+
+
+
+motivation
+----------
+
+- Player is not a stand-alone action. Players are part of a match and cannot exist on their own (for now)
+- A createMatch action is implemented
+- A matchSummary action is implemented
+- An AddFrameToMatch is created and is intended to add completed frames. In the next lesson the concept of a
+  'currentFrame' will be introduced and this might change this action

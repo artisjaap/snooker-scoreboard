@@ -24,6 +24,19 @@ public class Frame extends AbstractEntity{
     @Column(name = "FRAME_END")
     private LocalDateTime frameEnd;
 
+    protected Frame(){}
+    
+    private Frame(Builder builder) {
+        setScorePlayer1(builder.scorePlayer1);
+        setScorePlayer2(builder.scorePlayer2);
+        frameStart = builder.frameStart;
+        frameEnd = builder.frameEnd;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public int getScorePlayer1() {
         return scorePlayer1;
     }
@@ -38,5 +51,40 @@ public class Frame extends AbstractEntity{
 
     public void setScorePlayer2(int scorePlayer2) {
         this.scorePlayer2 = scorePlayer2;
+    }
+
+
+    public static final class Builder {
+        private int scorePlayer1;
+        private int scorePlayer2;
+        private LocalDateTime frameStart;
+        private LocalDateTime frameEnd;
+
+        private Builder() {
+        }
+
+        public Builder withScorePlayer1(int val) {
+            scorePlayer1 = val;
+            return this;
+        }
+
+        public Builder withScorePlayer2(int val) {
+            scorePlayer2 = val;
+            return this;
+        }
+
+        public Builder withFrameStart(LocalDateTime val) {
+            frameStart = val;
+            return this;
+        }
+
+        public Builder withFrameEnd(LocalDateTime val) {
+            frameEnd = val;
+            return this;
+        }
+
+        public Frame build() {
+            return new Frame(this);
+        }
     }
 }

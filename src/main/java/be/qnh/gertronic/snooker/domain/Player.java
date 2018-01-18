@@ -17,6 +17,20 @@ public class Player extends AbstractEntity{
     @Column(name = "LAST_NAME", nullable = false)
     private String lastname;
 
+    //default coonstructor required for JPA
+    protected Player() {
+
+    }
+
+    private Player(Builder builder) {
+        setFirstname(builder.firstname);
+        setLastname(builder.lastname);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getFirstname() {
         return firstname;
     }
@@ -31,5 +45,28 @@ public class Player extends AbstractEntity{
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+
+    public static final class Builder {
+        private String firstname;
+        private String lastname;
+
+        private Builder() {
+        }
+
+        public Builder withFirstname(String val) {
+            firstname = val;
+            return this;
+        }
+
+        public Builder withLastname(String val) {
+            lastname = val;
+            return this;
+        }
+
+        public Player build() {
+            return new Player(this);
+        }
     }
 }

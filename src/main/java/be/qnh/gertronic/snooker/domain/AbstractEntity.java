@@ -1,9 +1,6 @@
 package be.qnh.gertronic.snooker.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class AbstractEntity {
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     private Integer id;
 

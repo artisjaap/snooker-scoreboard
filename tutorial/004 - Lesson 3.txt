@@ -1,0 +1,11 @@
+Now that we have our first actions where we can create a match and add a frame,
+we need something to keep track of the current frame in progress of the match.
+For this we need a new Entity: CurrentFrame which is an optional 1:1 mapping on the match.
+We should keep track of, score for both players. The player currently playing, current break
+(which is the number of points scored without missing a ball) and something to keep track of the number of
+points still available to score.
+
+Snooker is played with 15 red balls (1point each), a yellow (2 points), green (3 points), brown (4 points),
+blue (5 points), pink (6 points) and black (7 points). After every red ball an other color has to be taken,
+after a color, again a red ball is to be taken and so on. When no reds are left, the colors are played
+in ascending value. This makes a total of (1 + 7)*15+2+3+4+5+6+7=147 points at the start of a frame.
