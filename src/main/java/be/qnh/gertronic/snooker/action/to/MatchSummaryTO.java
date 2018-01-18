@@ -1,7 +1,5 @@
 package be.qnh.gertronic.snooker.action.to;
 
-import be.qnh.gertronic.snooker.action.PlayerTO;
-
 public class MatchSummaryTO {
 
     private int matchId;

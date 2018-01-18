@@ -2,8 +2,10 @@ package be.qnh.gertronic.snooker.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by stijn on 17/01/2018.
@@ -80,6 +82,29 @@ public class Match extends AbstractEntity{
 
     public int wonByPlayer2() {
         return new Long(framesPlayed.stream().filter(frame -> frame.getScorePlayer2() > frame.getScorePlayer1()).count()).intValue();
+    }
+
+
+    public Optional<CurrentFrame> gameInProgrogress() {
+        return Optional.ofNullable(currentFrame);
+    }
+
+    public void startNewGame() {
+        gameInProgrogress().ifPresent(currentFrame -> {
+            currentFrame.setFrameEnd(LocalDateTime.now());
+            framesPlayed.add(currentFrame.convertToFrame());
+        });
+        currentFrame = CurrentFrame.newFrame();
+    }
+
+    public void addPoints(int points) {
+        gameInProgrogress().ifPresent(currentFrame1 -> {
+            currentFrame.addPoints(points);
+        });
+    }
+
+    public void changeTurn() {
+        gameInProgrogress().ifPresent(CurrentFrame::changeTurn);
     }
 
     public static final class Builder {

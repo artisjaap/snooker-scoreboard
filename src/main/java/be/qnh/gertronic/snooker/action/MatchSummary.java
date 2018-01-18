@@ -1,6 +1,7 @@
-package be.qnh.gertronic.snooker.action.matchsummary;
+package be.qnh.gertronic.snooker.action;
 
 
+import be.qnh.gertronic.snooker.action.to.CurrentFrameToAssembler;
 import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
 import be.qnh.gertronic.snooker.action.to.PlayerToAssembler;
 import be.qnh.gertronic.snooker.domain.Match;
@@ -23,6 +24,7 @@ public class MatchSummary {
                 .withPlayer1(PlayerToAssembler.assembleTo(match.getPlayer1()))
                 .withPlayer2(PlayerToAssembler.assembleTo(match.getPlayer2()))
                 .withMatchId(match.getId())
+                .withCurrentFrame(match.gameInProgrogress().map(CurrentFrameToAssembler::assembleTo).orElse(null))
                 .build();
 
     }

@@ -1,4 +1,4 @@
-package be.qnh.gertronic.snooker.action.addframe;
+package be.qnh.gertronic.snooker.action;
 
 import be.qnh.gertronic.snooker.action.to.FrameTO;
 import be.qnh.gertronic.snooker.action.to.FrameToAssembler;

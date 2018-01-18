@@ -1,6 +1,5 @@
 package be.qnh.gertronic.snooker.action.to;
 
-import be.qnh.gertronic.snooker.action.PlayerTO;
 import be.qnh.gertronic.snooker.domain.Player;
 
 public class PlayerToAssembler {

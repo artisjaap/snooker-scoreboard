@@ -1,7 +1,5 @@
 package be.qnh.gertronic.snooker.action.to;
 
-import be.qnh.gertronic.snooker.action.PlayerTO;
-
 import java.time.LocalDate;
 
 public class MatchTO {

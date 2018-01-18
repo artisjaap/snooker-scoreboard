@@ -14,6 +14,22 @@ public class CurrentFrameTO {
         currentPlayer = builder.currentPlayer;
     }
 
+    public int scorePlayer1() {
+        return scorePlayer1;
+    }
+
+    public int scorePlayer2() {
+        return scorePlayer2;
+    }
+
+    public int currentBreak() {
+        return currentBreak;
+    }
+
+    public int currentPlayer() {
+        return currentPlayer;
+    }
+
     public static Builder newBuilder() {
         return new Builder();
     }

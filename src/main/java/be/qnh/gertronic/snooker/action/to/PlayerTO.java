@@ -1,4 +1,4 @@
-package be.qnh.gertronic.snooker.action;
+package be.qnh.gertronic.snooker.action.to;
 
 public class PlayerTO {
     private String firstName;
