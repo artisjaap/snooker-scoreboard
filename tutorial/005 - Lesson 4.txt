@@ -1,0 +1,10 @@
+Now that we have current frame we can define some additional actions to interact with this frame
+
+1. turn: alter current player and resets the current break
+2. addPoints: adds points to current player and increase break
+	some validation here: points added should be between 1 and 7
+	if one is added: decrement points left with 8 points
+	if another number is added, no changes on pointsLeft
+	if one point is added when pointsLeft is <=27 should not be possible (27 points left means no more reds on the table)
+3. startNewGame: save the results in the FramesPlayed on the match and initiate a new game is the number of frames for this match is not exceeded
+

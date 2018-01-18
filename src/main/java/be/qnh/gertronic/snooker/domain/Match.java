@@ -29,6 +29,10 @@ public class Match extends AbstractEntity{
     @Column(name = "NUMBER_OF_FRAMES", nullable = false)
     private int numberOfFrames;
 
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CURRENT_FRAME_ID")
+    private CurrentFrame currentFrame;
+
     public Player getPlayer1() {
         return player1;
     }
