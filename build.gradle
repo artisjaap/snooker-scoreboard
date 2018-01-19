@@ -33,4 +33,10 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+
+	//cucumber
+	testCompile "info.cukes:cucumber-java8:1.2.4"
+	testCompile "info.cukes:cucumber-spring:1.2.4"
+	testCompile "info.cukes:cucumber-junit:1.2.4"
+	compile group: 'net.masterthought', name: 'cucumber-reporting', version: '3.1.0'
 }

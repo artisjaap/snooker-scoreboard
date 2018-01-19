@@ -9,6 +9,7 @@ public class CurrentFrameToAssembler {
                 .withCurrentPlayer(currentFrame.getCurrentPlayer())
                 .withScorePlayer1(currentFrame.getScorePlayer1())
                 .withScorePlayer2(currentFrame.getScorePlayer2())
+                .withPointsLeft(currentFrame.getPointsLeft())
                 .build();
     }
 }

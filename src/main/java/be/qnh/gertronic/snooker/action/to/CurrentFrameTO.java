@@ -6,12 +6,14 @@ public class CurrentFrameTO {
     private int scorePlayer2;
     private int currentBreak;
     private int currentPlayer;
+    private int pointsLeft;
 
     private CurrentFrameTO(Builder builder) {
         scorePlayer1 = builder.scorePlayer1;
         scorePlayer2 = builder.scorePlayer2;
         currentBreak = builder.currentBreak;
         currentPlayer = builder.currentPlayer;
+        pointsLeft = builder.pointsLeft;
     }
 
     public int scorePlayer1() {
@@ -30,6 +32,10 @@ public class CurrentFrameTO {
         return currentPlayer;
     }
 
+    public int pointsLeft() {
+        return pointsLeft;
+    }
+
     public static Builder newBuilder() {
         return new Builder();
     }
@@ -40,6 +46,7 @@ public class CurrentFrameTO {
         private int scorePlayer2;
         private int currentBreak;
         private int currentPlayer;
+        private int pointsLeft;
 
         private Builder() {
         }
@@ -64,8 +71,14 @@ public class CurrentFrameTO {
             return this;
         }
 
+        public Builder withPointsLeft(int val) {
+            pointsLeft = val;
+            return this;
+        }
+
         public CurrentFrameTO build() {
             return new CurrentFrameTO(this);
         }
+
     }
 }

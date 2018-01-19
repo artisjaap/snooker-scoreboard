@@ -6,3 +6,6 @@ Actually, we now have a basic implementation of a scoreboard:
 - and we can continue with a new frame
 Write some end-2-end testing with cucumber behaviour driven tests
 
+motivation
+----------
+- matchsimulation.feature is a cucumber scenario that can be executed to validate the current implementation

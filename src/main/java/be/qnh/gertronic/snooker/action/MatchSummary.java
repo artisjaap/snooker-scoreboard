@@ -9,12 +9,15 @@ import be.qnh.gertronic.snooker.domain.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
 public class MatchSummary {
 
     @Autowired
     private MatchRepository matchRepository;
 
+    @Transactional
     public MatchSummaryTO forMatch(Integer matchId){
         Match match = matchRepository.findOne(matchId);
 
