@@ -18,10 +18,14 @@ public class CreateMatch {
     @Autowired
     private MatchSummary matchSummary;
 
+    @Autowired
+    private StartNewGame startNewGame;
+
     @Transactional
     public MatchSummaryTO voor(MatchTO matchTO){
         Match match = MatchToAssembler.assembleEntity(matchTO);
         matchRepository.save(match);
+        startNewGame.forMatch(match.getId());
         return matchSummary.forMatch(match.getId());
     }
 }

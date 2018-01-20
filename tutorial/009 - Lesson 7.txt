@@ -1,0 +1,9 @@
+In this lesson we will introduce some security. This is what we would like:
+- when a new match is created, the user receives also a username/password to modify the match
+- the authenticated user can only change his match
+- there is one public endpoint that views the match statistics
+
+For authentication, we will use spring security with JWT (Json WebToken)
+
+For simplicity, we will extend the Match Entity with username/password fields instead of creating a new Authentication Entity
+This might change in the future when we need more features.

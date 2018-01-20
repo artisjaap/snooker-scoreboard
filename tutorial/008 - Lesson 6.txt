@@ -1,1 +1,14 @@
 first we create some end-points to start a match and call the created actions over endpoints
+
+
+motivation
+----------
+
+the actions are now accessible over rest endpoints
+- api/match/new
+- api/match/{matchId}/new-frame
+- api/match/{matchId}/change-turn
+- api/match/{matchId}/add-points/{points}
+
+you can check the MatchControllerTest to test the endpoints. Or you can use a REST client to access the points on
+http://localhost:8080 once the server is up and running.

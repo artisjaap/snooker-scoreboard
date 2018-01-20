@@ -3,6 +3,6 @@ still a lot to come. What about fault points, what about validation (when some s
 
 In the next lesson we will start to interact with this scoreboard through a REST-interface.
 We will also make the scoreboard multitanent (why would we otherwise need a server in the first place?)
-Multitanent means that we want to be able to serve different matches at the same time.
+Multi tenant means that we want to be able to serve different matches at the same time.
 We also need some kind of validation so that a user who created a match is the only one who can update the match
 but we would like to share a view on this match for all who are interested.
