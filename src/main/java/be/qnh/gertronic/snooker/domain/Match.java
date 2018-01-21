@@ -35,6 +35,12 @@ public class Match extends AbstractEntity{
     @JoinColumn(name = "CURRENT_FRAME_ID")
     private CurrentFrame currentFrame;
 
+    @Column(name = "USERNAME", nullable = false)
+    private String username;
+
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
     public Player getPlayer1() {
         return player1;
     }
@@ -53,6 +59,22 @@ public class Match extends AbstractEntity{
 
     public int getNumberOfFrames() {
         return numberOfFrames;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     //default coonstructor required for JPA

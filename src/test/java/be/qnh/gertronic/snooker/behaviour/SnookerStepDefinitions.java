@@ -1,10 +1,7 @@
 package be.qnh.gertronic.snooker.behaviour;
 
 import be.qnh.gertronic.snooker.action.*;
-import be.qnh.gertronic.snooker.action.to.CurrentFrameTO;
-import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
-import be.qnh.gertronic.snooker.action.to.MatchTO;
-import be.qnh.gertronic.snooker.action.to.PlayerTO;
+import be.qnh.gertronic.snooker.action.to.*;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -48,7 +45,7 @@ public class SnookerStepDefinitions extends CucumberContext {
                 .withPlayer1(PlayerTO.newBuilder().withFirstName(p1Firstname).withLastName(p1Lastname).build())
                 .withPlayer2(PlayerTO.newBuilder().withFirstName(p2Firstname).withLastName(p2Lastname).build())
                 .build();
-        MatchSummaryTO summaryTO = createMatch.voor(matchTO);
+        NewMatchTO summaryTO = createMatch.voor(matchTO);
 
         snookerWorld.updateMatchId(summaryTO.matchId());
         aNewFrameIsStarted();

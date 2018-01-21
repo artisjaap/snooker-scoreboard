@@ -4,6 +4,7 @@ import be.qnh.gertronic.snooker.InMemoryTest;
 import be.qnh.gertronic.snooker.action.mother.MatchCreator;
 import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
 import be.qnh.gertronic.snooker.action.to.MatchTO;
+import be.qnh.gertronic.snooker.action.to.NewMatchTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,10 @@ public class ChangeTurnInMemoryTest extends InMemoryTest {
     @Test
     public void changeTurn() {
         MatchTO matchTO = MatchCreator.createDefault();
-        MatchSummaryTO matchSummaryTO = createMatch.voor(matchTO);
-        startNewGame.forMatch(matchSummaryTO.matchId());
+        NewMatchTO newMatchTO = createMatch.voor(matchTO);
+        startNewGame.forMatch(newMatchTO.matchId());
 
-        matchSummaryTO = addPoints.toMatch(matchSummaryTO.matchId(), 1);
+        MatchSummaryTO matchSummaryTO = addPoints.toMatch(newMatchTO.matchId(), 1);
         changeTurn.onMatch(matchSummaryTO.matchId());
         matchSummaryTO = addPoints.toMatch(matchSummaryTO.matchId(), 1);
         matchSummaryTO = addPoints.toMatch(matchSummaryTO.matchId(), 7);

@@ -6,4 +6,4 @@ In this lesson we will introduce some security. This is what we would like:
 For authentication, we will use spring security with JWT (Json WebToken)
 
 For simplicity, we will extend the Match Entity with username/password fields instead of creating a new Authentication Entity
-This might change in the future when we need more features.
+This might change in the future when we need more features.˜

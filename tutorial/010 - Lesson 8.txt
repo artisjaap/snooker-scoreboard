@@ -1,0 +1,2 @@
+Now we should be able to controll a game via REST endpoints with some basic security
+In this lessen we will start a basic html interface to display the current frame of the match.

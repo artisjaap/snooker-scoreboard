@@ -1,7 +1,9 @@
 package be.qnh.gertronic.snooker.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 /**
  * Created by stijn on 20/01/18.
@@ -39,9 +43,15 @@ public abstract class ControllerTest {
     public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
+                .apply(springSecurity())
                 .build();
 
 
+    }
+
+    @Test
+    public void hasContext() {
+        Assert.assertNotNull(context);
     }
 
     public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
