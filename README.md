@@ -16,3 +16,21 @@ The master will always contain the latest version
 1. clone this repository
 2. checkout the first lesson branch (git checkout lesson-1)
 3. in the tutorial folder in the root you will find the first lesson (002 - Lesson 1.txt)
+
+## available lessons
+1. *Lesson 1 - A basic datamodel:* create a basic Hibernate datamodel to store match info
+1. *Lesson 2 - Create interactions:* Add some actions to create a new match, points of a match,...
+1. *Lesson 3 - Create current frame:* Now that we have a match, we need someting to keep track of the current frame (points, highest break, ...)
+1. *Lesson 4 - Some more interactions:* We add some more actions to interact with the current frame 
+1. *Lesson 5 - Behaviour testing:* In this lesson we add behavior tests using Cucumber 
+1. *Lesson 6 - Create a webcontroller:* Now that we have our actions, we create REST-endpoints to call the appropriate actions 
+1. *Lesson 7 - Add basic Spring security:* We want our application to run on a server and host different matches.
+ For this we need security in such a way that the create of a match is the owner of the match.
+1. *Lesson 8 - Front-end mockup:* Here we start with a basic mockup in Angular 
+1. *Lesson 9 - Front-end implement new match:* The implementation of the "new match" form 
+
+## next lessons
+1. *Lesson 10 - Front-end implement follow-match:* First basic implementation of the scoreboard 
+1. *Lesson 11 - Front-end remote control:* Implementing the remote controll
+1. *Lesson 12 - follow-match with websockets:* Automatic refresh scoreboard with websockets
+ 
