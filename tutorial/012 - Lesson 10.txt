@@ -1,0 +1,2 @@
+In this lesson we continue with the frontend. A call to the match statistics is required and an update
+of the follow-match front end will take place

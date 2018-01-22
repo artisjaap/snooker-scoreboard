@@ -3,28 +3,28 @@
     Create Match
   </h1>
 </div>
-<form class="match">
+<form class="match"  [formGroup]="matchForm" (ngSubmit)="createMatch()">
+
 
   <div class="player row">
     <span>Player 1</span>
-    <input type="text">
-    <input type="text">
+    <input type="text" formControlName="firstNamePlayer1">
+    <input type="text" formControlName="lastNamePlayer1">
   </div>
 
   <div class="player row">
     <span>Player 2</span>
-    <input type="text">
-    <input type="text">
+    <input type="text" formControlName="firstNamePlayer2">
+    <input type="text" formControlName="lastNamePlayer2">
   </div>
 
 
   <div class="games row">
     <span># Games</span>
-    <input type="number">
+    <input type="number" formControlName="numberOfFrames">
   </div>
 
-  <div class="splash-link">
-    <div >CREATE</div>
-  </div>
+
+    <button type="submit" class="form-link" >Submit</button>
 
 </form>

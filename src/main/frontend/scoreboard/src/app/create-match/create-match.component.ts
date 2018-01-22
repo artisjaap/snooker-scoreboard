@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MatchService} from "./match.service";
+import {MatchRequestTO} from "./MatchRequestTO";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-match',
@@ -6,10 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-match.component.scss']
 })
 export class CreateMatchComponent implements OnInit {
+  matchForm: FormGroup;
 
-  constructor() { }
+  constructor(private matchService:MatchService, private router:Router, private route:ActivatedRoute) {
+    this.matchForm = new FormGroup({
+      firstNamePlayer1 : new FormControl('', Validators.required),
+      lastNamePlayer1 : new FormControl('', Validators.required),
+      firstNamePlayer2 : new FormControl('', Validators.required),
+      lastNamePlayer2 : new FormControl('', Validators.required),
+      numberOfFrames : new FormControl('', Validators.required),
+    });
+
+  }
 
   ngOnInit() {
   }
+
+  public createMatch(){
+
+    if(this.matchForm.valid){
+     this.matchService.createMatch(this.matchForm.value).subscribe((data) => {
+       this.router.navigate(['../follow-match/', data.matchId], {relativeTo:this.route});
+     });
+    }
+  }
+
 
 }
