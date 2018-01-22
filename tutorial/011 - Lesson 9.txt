@@ -1,0 +1,4 @@
+now that we have our basic app, we will first implement the the create new match:
+A new match with player names and number of frames will be posted, after the server responds
+with the NewMatch object and we retrieved the new match ID, we will redirect to the follow-match view
+In the next lesson we will implement this.

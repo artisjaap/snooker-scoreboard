@@ -1,2 +1,9 @@
-Now we should be able to controll a game via REST endpoints with some basic security
+Now we should be able to control a game via REST endpoints with some basic security
 In this lessen we will start a basic html interface to display the current frame of the match.
+First we build a basic mockup with Angular.
+It will have a splash screen with three navigations:
+- create match: which links to a form where you can create a new match
+- follow match: once you have a match created, you can join and display this match
+- create remote: creates a remote control to update a given match
+
+
