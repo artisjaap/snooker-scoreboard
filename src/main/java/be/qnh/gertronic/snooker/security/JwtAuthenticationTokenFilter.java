@@ -52,7 +52,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         logger.info("checking authentication for user " + username);
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (username != null /*&& SecurityContextHolder.getContext().getAuthentication() == null*/) {
 
             // It is not compelling necessary to load the use details yearMonthFrom the database. You could also store the information
             // in the token and read it yearMonthFrom it. It's up to you ;)

@@ -12,9 +12,18 @@ export class CustomHttpService {
     return this.post(url, data);
   }
 
-  private post(url:string, data:any) {
+  public getJson(url:string): Observable<any> {
+    return this.get(url);
+  }
+
+  private post(url:string, data:any): Observable<any> {
     return this.http.post(this.apiUrl + url, data);
   }
+
+  private get(url:string): Observable<any>{
+    return this.http.get(this.apiUrl + url);
+  }
+
 
 
 }

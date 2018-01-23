@@ -6,6 +6,13 @@
     display: flex;
     justify-content: center;
     border-bottom: 1px solid deeppink;
+
+    span {
+      margin: 0 10px;
+    }
+    .active {
+      color: yellowgreen;
+    }
   }
 
   .controls {
@@ -61,8 +68,20 @@
         background-color: black;
         color: white;
       }
+
+      &.cornflower {
+        background-color: cornflowerblue;
+        color: white;
+      }
     }
 
+  }
+
+  .status {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }
 

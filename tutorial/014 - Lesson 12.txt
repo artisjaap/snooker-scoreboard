@@ -1,0 +1,4 @@
+we would like to run our remote on a separate device. So we need to authenticate to the server.
+It would be great if we could scan a QR code (created in a later lesson) containing an URL with information
+about the match so it can be authenticated and a scoreboard can be started.
+This component will be implemented in this this lesson.

@@ -9,7 +9,7 @@ import { FollowMatchComponent } from './follow-match/follow-match.component';
 import {RemoteControlComponent} from './remote-control/remote-control.component';
 import {RouterModule, Routes} from "@angular/router";
 import {CustomHttpService} from "./common/custom-http.service";
-import {MatchService} from "./create-match/match.service";
+import {MatchService} from "./common/match.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 

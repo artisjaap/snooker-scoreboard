@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from "@angular/router";
+import {MatchService} from "../common/match.service";
+import {MatchResponse} from "../common/MatchResponse";
 
 @Component({
   selector: 'app-follow-match',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FollowMatchComponent implements OnInit {
 
-  constructor() { }
+  match:MatchResponse;
+
+  constructor(private route: ActivatedRoute, private matchService:MatchService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((param: Params) => {
+      let matchId = param["matchId"];
+      this.matchService.matchDetails(matchId).subscribe((data:MatchResponse) => {
+        this.match = data;
+      });
+    });
   }
 
 }

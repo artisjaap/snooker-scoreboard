@@ -32,5 +32,7 @@ The master will always contain the latest version
 ## next lessons
 - *Lesson 10 - Front-end implement follow-match:* First basic implementation of the scoreboard 
 - *Lesson 11 - Front-end remote control:* Implementing the remote controll
-- *Lesson 12 - follow-match with websockets:* Automatic refresh scoreboard with websockets
+- *Lesson 12 - Front-end fast login:* an url containing username/password for a match so that a remote control can 
+easly be created
+- *Lesson 13 - follow-match with websockets:* Automatic refresh scoreboard with websockets
  

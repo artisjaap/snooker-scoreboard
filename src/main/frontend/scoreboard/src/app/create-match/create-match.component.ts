@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatchService} from "./match.service";
+import {MatchService} from "../common/match.service";
 import {MatchRequestTO} from "./MatchRequestTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -30,7 +30,10 @@ export class CreateMatchComponent implements OnInit {
 
     if(this.matchForm.valid){
      this.matchService.createMatch(this.matchForm.value).subscribe((data) => {
-       this.router.navigate(['../follow-match/', data.matchId], {relativeTo:this.route});
+       console.log("subscribe on match", data);
+       if(data.matchId){
+        this.router.navigate(['../follow-match/', data.matchId], {relativeTo:this.route});
+       }
      });
     }
   }

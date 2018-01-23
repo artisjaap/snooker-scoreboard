@@ -1,15 +1,30 @@
 
 <div class="remote">
   <div class="info">
-    55 Vs 22
+    <span [ngClass]="{'active' : currentFrame?.currentPlayer === 1}">{{currentFrame?.scorePlayer1}}</span> Vs <span [ngClass]="{'active' : currentFrame?.currentPlayer === 2}">{{currentFrame?.scorePlayer2}}</span>
   </div>
   <div class="controls">
-    <div class="scorebtn red">1</div>
-    <div class="scorebtn yellow">2</div>
-    <div class="scorebtn green">3</div>
-    <div class="scorebtn brown">4</div>
-    <div class="scorebtn blue">5</div>
-    <div class="scorebtn pink">6</div>
-    <div class="scorebtn black">7</div>
+    <div class="scorebtn red" (click)="addPoints(1)">1</div>
+    <div class="scorebtn yellow" (click)="addPoints(2)">2</div>
+    <div class="scorebtn green" (click)="addPoints(3)">3</div>
+    <div class="scorebtn brown" (click)="addPoints(4)">4</div>
+    <div class="scorebtn blue" (click)="addPoints(5)">5</div>
+    <div class="scorebtn pink" (click)="addPoints(6)">6</div>
+    <div class="scorebtn black" (click)="addPoints(7)">7</div>
+  </div>
+  <div class="controls">
+    <div class="scorebtn cornflower" (click)="changeTurn()">Turn</div>
+    <div class="scorebtn cornflower" (click)="newFrame()">New</div>
+
+  </div>
+  <div class="status">
+    <div>
+      Match # {{matchId}}
+    </div>
+    <div>
+      <span [routerLink]="['/follow-match/', matchId]">follow match</span>
+      <span [routerLink]="['/create-match']">new match</span>
+    </div>
+
   </div>
 </div>

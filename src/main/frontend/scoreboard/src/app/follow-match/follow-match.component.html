@@ -1,39 +1,42 @@
+
 <div class="scoreboard" style="display: flex;">
   <div></div>
   <div style="display:flex; flex:1; justify-content: center; ">
     <div style="display:flex; flex-direction: column; justify-content: center">
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px; font-size: 1.2em; color: yellowgreen">John Higgings</div>
-        <div style="margin: 3px 15px; color:tomato">Best of 33</div>
-        <div style="margin: 3px 15px;  font-size: 1.2em">Mark Williams</div>
+        <div style="margin: 3px 15px; font-size: 1.2em; color: yellowgreen">{{match?.player1?.firstName + ' ' + match?.player1?.lastName}}</div>
+        <div style="margin: 3px 15px; color:tomato">Best of ***</div>
+        <div style="margin: 3px 15px;  font-size: 1.2em">{{match?.player2?.firstName + ' ' + match?.player2?.lastName}}</div>
       </div>
 
+
+
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px">0</div>
+        <div style="margin: 3px 15px">***</div>
         <div style="margin: 3px 15px; ">Last break</div>
-        <div style="margin: 3px 15px">0</div>
+        <div style="margin: 3px 15px">***</div>
       </div>
 
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px; font-size: 5em">22</div>
-        <div style="margin: 3px 15px; ">4 Frame 3</div>
-        <div style="margin: 3px 15px; font-size: 5em">33</div>
+        <div style="margin: 3px 15px; font-size: 5em">{{match?.currentFrame?.scorePlayer1}}</div>
+        <div style="margin: 3px 15px; ">{{match?.framesWonPlayer1}} Frame {{match?.framesWonPlayer2}}</div>
+        <div style="margin: 3px 15px; font-size: 5em">{{match?.currentFrame?.scorePlayer2}}</div>
       </div>
 
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px">4</div>
+        <div style="margin: 3px 15px">{{match?.currentFrame?.highestBreakPlayer1}}</div>
         <div style="margin: 3px 15px; ">Highest break</div>
-        <div style="margin: 3px 15px">1</div>
+        <div style="margin: 3px 15px">{{match?.currentFrame?.highestBreakPlayer2}}</div>
       </div>
 
       <div style="display: flex; flex-direction: row; ">
-        <div style="display:flex; flex:1; justify-content: flex-start">15 ahead</div>
-        <div style="display:flex; flex:1; justify-content: flex-end">51 remaining</div>
+        <div style="display:flex; flex:1; justify-content: flex-start">*** ahead</div>
+        <div style="display:flex; flex:1; justify-content: flex-end">{{match?.currentFrame?.pointsLeft}} remaining</div>
       </div>
     </div>
 
   </div>
-  <div></div>
+  <div [routerLink]="['/remote-control']">remote</div>
 
 
 </div>

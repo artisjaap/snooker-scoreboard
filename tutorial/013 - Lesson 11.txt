@@ -1,0 +1,4 @@
+in this lesson a basic remote control is implemented. It is able to
+- add points
+- turn player
+- start new game
