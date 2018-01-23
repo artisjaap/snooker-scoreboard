@@ -12,12 +12,14 @@ import {CustomHttpService} from "./common/custom-http.service";
 import {MatchService} from "./common/match.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RemoteControlConnectComponent } from './remote-control-connect/remote-control-connect.component';
 
 const routes:Routes = [
   {path: "create-match", component: CreateMatchComponent, },
   {path: "follow-match/:matchId", component: FollowMatchComponent },
   {path: "remote-control", component: RemoteControlComponent },
   {path: "splash", component: SplashscreenComponent},
+  {path: "remote-connect/:username/:password", component: RemoteControlConnectComponent},
   {path: "**", redirectTo: "splash"}
   ]
 
@@ -27,7 +29,8 @@ const routes:Routes = [
     SplashscreenComponent,
     CreateMatchComponent,
     FollowMatchComponent,
-    RemoteControlComponent
+    RemoteControlComponent,
+    RemoteControlConnectComponent
   ],
   imports: [
     BrowserModule,

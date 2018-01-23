@@ -12,4 +12,6 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 
     @Query("select max(id) from Match")
     Optional<Integer> findMaxId();
+
+    Optional<Match> findByUsernameAndPassword(String username, String password);
 }

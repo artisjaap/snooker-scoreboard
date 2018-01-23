@@ -14,9 +14,6 @@ public class CreateMatch {
     private MatchRepository matchRepository;
 
     @Autowired
-    private MatchSummary matchSummary;
-
-    @Autowired
     private StartNewGame startNewGame;
 
     @Autowired
@@ -30,12 +27,6 @@ public class CreateMatch {
         match.setPassword(usernamePasswordTO.getPassword());
         matchRepository.save(match);
         startNewGame.forMatch(match.getId());
-        return NewMatchTO.newBuilder()
-                .withMatchId(match.getId())
-                .withUsername(match.getUsername())
-                .withPassword(match.getPassword())
-                .withPlayer1(PlayerToAssembler.assembleTo(match.getPlayer1()))
-                .withPlayer2(PlayerToAssembler.assembleTo(match.getPlayer2()))
-                .build();
+        return NewMatchToAssembler.assembleTO(match);
     }
 }

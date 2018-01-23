@@ -1,0 +1,2 @@
+we can now run a remote control on a separate machine. It would be nice if the scoreboard is automatically
+updated if the remote is used. This will be done with websockets.

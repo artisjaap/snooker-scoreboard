@@ -64,6 +64,18 @@ export class MatchService {
     return this.matchId;
   }
 
+  public loginWith(username:string, password:string) : Observable<any>{
+    let subject:BehaviorSubject<NewMatchResponse> = new BehaviorSubject(new NewMatchResponse());
+
+    this.httpClient.get(this.apiUrl + "/public/api/login/" + username + "/" + password)
+      .subscribe((response:NewMatchResponse) => {
+        this.jwtToken = "Bearer " + response.jwtToken;
+        this.matchId = response.matchId;
+        subject.next(response);
+    });
+
+    return subject.asObservable();
+  }
 
 
 
