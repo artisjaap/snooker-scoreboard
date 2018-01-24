@@ -29,6 +29,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-websocket')
+	compile("org.webjars:webjars-locator")
+	compile("org.webjars:sockjs-client:1.0.2")
+	compile("org.webjars:stomp-websocket:2.3.3")
+	compile("org.webjars:bootstrap:3.3.7")
+	compile("org.webjars:jquery:3.1.0")
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -42,4 +47,7 @@ dependencies {
 	testCompile "info.cukes:cucumber-spring:1.2.4"
 	testCompile "info.cukes:cucumber-junit:1.2.4"
 	compile group: 'net.masterthought', name: 'cucumber-reporting', version: '3.1.0'
+
+
+
 }
