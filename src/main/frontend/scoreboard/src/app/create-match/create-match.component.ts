@@ -4,6 +4,7 @@ import {MatchRequestTO} from "./MatchRequestTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-create-match',
   templateUrl: './create-match.component.html',
@@ -11,6 +12,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CreateMatchComponent implements OnInit {
   matchForm: FormGroup;
+
+
 
   constructor(private matchService:MatchService, private router:Router, private route:ActivatedRoute) {
     this.matchForm = new FormGroup({
@@ -21,7 +24,11 @@ export class CreateMatchComponent implements OnInit {
       numberOfFrames : new FormControl('', Validators.required),
     });
 
+
   }
+
+
+
 
   ngOnInit() {
   }

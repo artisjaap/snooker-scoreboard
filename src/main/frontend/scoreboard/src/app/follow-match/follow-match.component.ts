@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {MatchService} from "../common/match.service";
 import {MatchResponse} from "../common/MatchResponse";
+import {MatchWsService} from "../common/matchws.service";
 
 @Component({
   selector: 'app-follow-match',
@@ -12,14 +13,22 @@ export class FollowMatchComponent implements OnInit {
 
   match:MatchResponse;
 
-  constructor(private route: ActivatedRoute, private matchService:MatchService) { }
+  constructor(private route: ActivatedRoute
+    , private matchService:MatchService
+    , private matchWsService:MatchWsService) { }
 
   ngOnInit() {
     this.route.params.subscribe((param: Params) => {
-      let matchId = param["matchId"];
-      this.matchService.matchDetails(matchId).subscribe((data:MatchResponse) => {
-        this.match = data;
-      });
+      if(param){
+        let matchId = param["matchId"];
+        this.matchWsService.connect(matchId,
+          (match)=>{ this.match = JSON.parse(match.body);
+        });
+        this.matchService.matchDetails(matchId).subscribe((data:MatchResponse) => {
+          this.match = data;
+
+        });
+      }
     });
   }
 

@@ -13,6 +13,7 @@ import {MatchService} from "./common/match.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RemoteControlConnectComponent } from './remote-control-connect/remote-control-connect.component';
+import {MatchWsService} from "./common/matchws.service";
 
 const routes:Routes = [
   {path: "create-match", component: CreateMatchComponent, },
@@ -42,6 +43,7 @@ const routes:Routes = [
   ],
   providers: [CustomHttpService,
     MatchService,
+    MatchWsService,
     { provide: 'API_URL', useValue: 'http://localhost:8080/' }
   ],
   bootstrap: [AppComponent]

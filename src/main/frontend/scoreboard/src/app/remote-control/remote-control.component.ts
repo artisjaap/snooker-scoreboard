@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatchService} from "../common/match.service";
 import {CurrentFrameResponse} from "../common/CurrentFrameResponse";
+import {MatchWsService} from "../common/matchws.service";
 
 @Component({
   selector: 'app-remote-control',
@@ -11,17 +12,21 @@ export class RemoteControlComponent implements OnInit {
   currentFrame: CurrentFrameResponse;
   matchId:number;
 
-  constructor(private matchService:MatchService) {
+  constructor(private matchService:MatchService, private matchWsService:MatchWsService) {
     this.matchId = matchService.curentMatchId();
+    matchWsService.connect(this.matchId, ()=>{});
   }
 
   ngOnInit() {
   }
 
   public addPoints(points:number) {
-    this.matchService.addPoints(points).subscribe((data:CurrentFrameResponse)=>{
-      this.currentFrame = data;
-    });
+    console.log("hello");
+    // this.matchService.addPoints(points).subscribe((data:CurrentFrameResponse)=>{
+    //   this.currentFrame = data;
+    // });
+
+    this.matchWsService.sendMessage(points, this.matchId);
   }
 
   public changeTurn() {

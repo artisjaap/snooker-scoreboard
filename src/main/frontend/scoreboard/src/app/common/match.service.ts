@@ -9,12 +9,17 @@ import {CurrentFrameResponse} from "./CurrentFrameResponse";
 
 @Injectable()
 export class MatchService {
-
-  private jwtToken: string;
-  private matchId: number;
+  private matchData = {jwtToken: "", matchId: 0};
 
   constructor(private httpClient:HttpClient, @Inject('API_URL') private apiUrl: string) {
-    console.log("create service");
+    this.resetTokenFromLocalStorage();
+  }
+
+  private resetTokenFromLocalStorage(){
+    let storedMatch = localStorage.getItem("match");
+    if(storedMatch){
+      this.matchData = JSON.parse(storedMatch);
+    }
   }
 
   public createMatch(match:MatchRequestTO):Observable<NewMatchResponse>{
@@ -26,8 +31,10 @@ export class MatchService {
     //useing a BehaviorSubject solves this but isnt the best solution
     let post:Observable<NewMatchResponse> = this.httpClient.post<NewMatchResponse>(this.apiUrl + "public/api/match/new", match);
     post.subscribe((response:NewMatchResponse) => {
-      this.jwtToken = "Bearer " + response.jwtToken;
-      this.matchId = response.matchId;
+      this.matchData.jwtToken = "Bearer " + response.jwtToken;
+      this.matchData.matchId = response.matchId;
+
+      localStorage.setItem("match", JSON.stringify(this.matchData));
       subject.next(response);
     });
 
@@ -39,29 +46,29 @@ export class MatchService {
   }
 
   public changeTurn():Observable<CurrentFrameResponse>{
-    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure//api/match/"+ this.matchId +"/change-turn"
+    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure//api/match/"+ this.matchData.matchId +"/change-turn"
       , {}
-      , {headers: {'Authorization': this.jwtToken}}
+      , {headers: {'Authorization': this.matchData.jwtToken}}
     );
   }
 
   public addPoints(points:number):Observable<CurrentFrameResponse>{
 
-    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure/api/match/"+ this.matchId +"/add-points/" + points
+    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure/api/match/"+ this.matchData.matchId +"/add-points/" + points
       , {}
-      , {headers: {'Authorization': this.jwtToken}}
+      , {headers: {'Authorization': this.matchData.jwtToken}}
       );
   }
 
   public newFrame():Observable<CurrentFrameResponse>{
-    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "/secure/api/match/"+ this.matchId +"/new-frame"
+    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "/secure/api/match/"+ this.matchData.matchId +"/new-frame"
       , {}
-      , {headers: {'Authorization': this.jwtToken}}
+      , {headers: {'Authorization': this.matchData.jwtToken}}
     );
   }
 
   public curentMatchId(): number{
-    return this.matchId;
+    return this.matchData.matchId;
   }
 
   public loginWith(username:string, password:string) : Observable<any>{
@@ -69,8 +76,8 @@ export class MatchService {
 
     this.httpClient.get(this.apiUrl + "/public/api/login/" + username + "/" + password)
       .subscribe((response:NewMatchResponse) => {
-        this.jwtToken = "Bearer " + response.jwtToken;
-        this.matchId = response.matchId;
+        this.matchData.jwtToken = "Bearer " + response.jwtToken;
+        this.matchData.matchId = response.matchId;
         subject.next(response);
     });
 
