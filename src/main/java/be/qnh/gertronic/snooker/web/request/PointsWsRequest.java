@@ -1,4 +1,4 @@
-package be.qnh.gertronic.snooker.action.to;
+package be.qnh.gertronic.snooker.web.request;
 
 public class PointsWsRequest {
 

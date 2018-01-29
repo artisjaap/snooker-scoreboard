@@ -7,7 +7,7 @@ import {MatchWsService} from "../common/matchws.service";
 @Component({
   selector: 'app-follow-match',
   templateUrl: './follow-match.component.html',
-  styleUrls: ['./follow-match.component.css']
+  styleUrls: ['./follow-match.component.scss']
 })
 export class FollowMatchComponent implements OnInit {
 
@@ -30,6 +30,14 @@ export class FollowMatchComponent implements OnInit {
         });
       }
     });
+  }
+
+  disconnect() {
+    this.matchWsService.disconnect();
+  }
+
+  isConnected():boolean {
+    return this.matchWsService.isConnected();
   }
 
 }

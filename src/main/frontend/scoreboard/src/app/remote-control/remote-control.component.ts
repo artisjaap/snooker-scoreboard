@@ -11,17 +11,24 @@ import {MatchWsService} from "../common/matchws.service";
 export class RemoteControlComponent implements OnInit {
   currentFrame: CurrentFrameResponse;
   matchId:number;
+  matchDetail: any;
 
   constructor(private matchService:MatchService, private matchWsService:MatchWsService) {
     this.matchId = matchService.curentMatchId();
-    matchWsService.connect(this.matchId, ()=>{});
+    matchService.matchDetails(this.matchId).subscribe((data)=>{
+      console.log("connection..." , data);
+      this.matchDetail = data;
+    });
+    matchWsService.connect(this.matchId, (matchDetail)=>{
+     // console.log("score", newScore.body)
+      this.matchDetail = JSON.parse(matchDetail.body)
+    });
   }
 
   ngOnInit() {
   }
 
   public addPoints(points:number) {
-    console.log("hello");
     // this.matchService.addPoints(points).subscribe((data:CurrentFrameResponse)=>{
     //   this.currentFrame = data;
     // });
@@ -40,5 +47,10 @@ export class RemoteControlComponent implements OnInit {
       this.currentFrame = data;
     });
   }
+
+  isConnected():boolean {
+    return this.matchWsService.isConnected();
+  }
+
 
 }

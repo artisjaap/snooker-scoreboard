@@ -37,7 +37,7 @@ export class CreateMatchComponent implements OnInit {
 
     if(this.matchForm.valid){
      this.matchService.createMatch(this.matchForm.value).subscribe((data) => {
-       console.log("subscribe on match", data);
+       console.log("/remote-control-connect/" + data.username + '/' + data.password, data);
        if(data.matchId){
         this.router.navigate(['../follow-match/', data.matchId], {relativeTo:this.route});
        }

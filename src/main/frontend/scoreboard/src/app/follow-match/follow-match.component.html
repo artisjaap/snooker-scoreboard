@@ -39,47 +39,15 @@
   <div [routerLink]="['/remote-control']">remote</div>
 
 
+  <div class="status">
+    <div>
+      <span class="fa fa-globe"></span>
+      <div [ngClass]="{'connected' : isConnected()}">Connected? {{isConnected()}}</div>
+    </div>
+    <div>
+      <span [routerLink]="['/follow-match/', matchId]">follow match</span>
+      <span [routerLink]="['/create-match']">new match</span>
+    </div>
+
+  </div>
 </div>
-<!--<div class="scoreboard">-->
-  <!--<div class="left">a</div>-->
-  <!--<div class="center">-->
-    <!--<div class="top">-->
-      <!--<div class="player">-->
-        <!--<div class="name">John Higgins</div>-->
-        <!--<div class="last-break">0</div>-->
-        <!--<div class="score">22</div>-->
-        <!--<div class="highest-break">0</div>-->
-      <!--</div>-->
-      <!--<div class="center">-->
-        <!--<div class="best-of">Best of 33</div>-->
-        <!--<div class="best-of">Last break</div>-->
-        <!--<div class="frames">-->
-          <!--<span>3</span>-->
-          <!--<span>frames</span>-->
-          <!--<span>4</span>-->
-        <!--</div>-->
-        <!--<div class="highest-break">Highest break</div>-->
-
-      <!--</div>-->
-      <!--<div class="player">-->
-        <!--<div class="name">John Higgins</div>-->
-        <!--<div class="last-break">0</div>-->
-        <!--<div class="score">22</div>-->
-        <!--<div class="highest-break">0</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="ahead">15 ahead 59 remaining</div>-->
-    <!--<div class="break">-->
-      <!--<div class="break">46</div>-->
-      <!--<div class="last-input">5</div>-->
-    <!--</div>-->
-    <!--<div class="break-colors">-->
-      <!--<span>1</span><span>2</span><span>3</span>-->
-      <!--<span>4</span><span>5</span><span>6</span>-->
-      <!--<span>7</span>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="right">b</div>-->
-
-
-<!--</div>-->

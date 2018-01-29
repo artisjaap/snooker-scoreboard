@@ -1,7 +1,27 @@
-
 <div class="remote">
   <div class="info">
-    <span [ngClass]="{'active' : currentFrame?.currentPlayer === 1}">{{currentFrame?.scorePlayer1}}</span> Vs <span [ngClass]="{'active' : currentFrame?.currentPlayer === 2}">{{currentFrame?.scorePlayer2}}</span>
+    <div>
+      <span [ngClass]="{'active' : matchDetail?.currentFrame?.currentPlayer === 1}">
+        {{matchDetail?.player1?.firstName}}
+        {{matchDetail?.player1?.lastName}}
+        ({{matchDetail?.framesWonPlayer1}})
+
+        {{matchDetail?.currentFrame?.scorePlayer1}}
+      </span>
+      Vs
+      <span [ngClass]="{'active' : matchDetail?.currentFrame?.currentPlayer === 2}">
+
+        {{matchDetail?.currentFrame?.scorePlayer2}}
+
+        ({{matchDetail?.framesWonPlayer2}})
+        {{matchDetail?.player1?.firstName}}
+        {{matchDetail?.player1?.lastName}}
+
+      </span>
+    </div>
+    <div>
+      Break: {{matchDetail?.currentFrame?.currentBreak}} points left: {{matchDetail?.currentFrame?.pointsLeft}}
+    </div>
   </div>
   <div class="controls">
     <div class="scorebtn red" (click)="addPoints(1)">1</div>
@@ -18,6 +38,10 @@
 
   </div>
   <div class="status">
+    <div>
+      <span class="fa fa-globe"></span>
+      <div [ngClass]="{'connected' : isConnected()}">Connected? {{isConnected()}}</div>
+    </div>
     <div>
       Match # {{matchId}}
     </div>

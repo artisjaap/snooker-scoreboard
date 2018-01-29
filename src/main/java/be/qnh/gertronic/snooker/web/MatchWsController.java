@@ -2,8 +2,9 @@ package be.qnh.gertronic.snooker.web;
 
 import be.qnh.gertronic.snooker.action.AddPoints;
 import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
-import be.qnh.gertronic.snooker.action.to.PointsWsRequest;
-import be.qnh.gertronic.snooker.web.response.CurrentFrameResponse;
+import be.qnh.gertronic.snooker.web.request.MatchUpdateRequest;
+import be.qnh.gertronic.snooker.web.request.PointsWsRequest;
+import be.qnh.gertronic.snooker.web.response.MatchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,11 +18,14 @@ public class MatchWsController {
 
     @MessageMapping("/match/{matchId}")
     @SendTo("/topic/currentframe/{matchId}")
-    public CurrentFrameResponse addPoints(PointsWsRequest points) throws Exception {
-        //dummy implementation
-        MatchSummaryTO matchSummaryTO = addPoints.toMatch(points.getMatchId(), points.getPoints());
-        return CurrentFrameResponse.from(matchSummaryTO.currentFrame());
+    public MatchResponse addPoints(MatchUpdateRequest request) throws Exception {
+        return doAddPoints(points);
     }
 
+    public MatchResponse doAddPoints(PointsWsRequest points) throws Exception {
+        //dummy implementation
+        MatchSummaryTO matchSummaryTO = addPoints.toMatch(points.getMatchId(), points.getPoints());
+        return MatchResponse.from(matchSummaryTO);
+    }
 
 }
