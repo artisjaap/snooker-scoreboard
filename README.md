@@ -35,4 +35,4 @@ The master will always contain the latest version
 - *Lesson 12 - Front-end fast login:* an url containing username/password for a match so that a remote control can 
 easly be created
 - *Lesson 13 - follow-match with websockets:* Automatic refresh scoreboard with websockets
- 
+- *Lesson 14 - finalize basic functionality:* Add missing functionality to the scoreboard like highest break, last break, ... 
