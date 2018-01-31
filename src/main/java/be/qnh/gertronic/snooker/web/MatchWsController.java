@@ -4,15 +4,12 @@ import be.qnh.gertronic.snooker.action.AddPoints;
 import be.qnh.gertronic.snooker.action.ChangeTurn;
 import be.qnh.gertronic.snooker.action.StartNewGame;
 import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
-import be.qnh.gertronic.snooker.web.request.PointsWsRequest;
 import be.qnh.gertronic.snooker.web.request.MatchUpdateRequest;
-
 import be.qnh.gertronic.snooker.web.response.MatchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import sun.plugin.dom.exception.InvalidStateException;
 
 @Controller
 public class MatchWsController {
@@ -34,7 +31,7 @@ public class MatchWsController {
             case CHANGE_TURN: return doChangeTurn(request.getMatchId());
             case START_NEW_FRAME: return doStartNewGame(request.getMatchId());
         }
-        throw new InvalidStateException("Unknown Action: " + request.getAction());
+        throw new IllegalStateException("Unknown Action: " + request.getAction());
 
     }
 
