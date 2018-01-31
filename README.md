@@ -31,8 +31,21 @@ The master will always contain the latest version
 
 ## next lessons
 - *Lesson 10 - Front-end implement follow-match:* First basic implementation of the scoreboard 
-- *Lesson 11 - Front-end remote control:* Implementing the remote controll
+- *Lesson 11 - Front-end remote control:* Implementing the remote control
 - *Lesson 12 - Front-end fast login:* an url containing username/password for a match so that a remote control can 
 easly be created
 - *Lesson 13 - follow-match with websockets:* Automatic refresh scoreboard with websockets
-- *Lesson 14 - finalize basic functionality:* Add missing functionality to the scoreboard like highest break, last break, ... 
+- *Lesson 14 - finalize basic functionality:* Add missing functionality to the scoreboard like highest break, last break, ...
+
+## how to use
+A first working beta version is now included.
+1. download te build/libs/snooker-scoreboard-0.0.1-SNAPSHOT.jar
+2. run *java -jar snooker-scoreboard-0.0.1-SNAPSHOT.jar* to spinup the serve
+3. open a browser on http://localhost:8080
+4. create a new match
+5. click the 'remote' link at the bottom to view the remote control
+6. refresh this screen (known bug)
+7. open another window on http://localhost:8080/follow-match/1 (where 1 is the number you find on the remote control)
+8. when you hit the buttons on the remote control, the scoreboard should update
+9. you can open a second registered remote control http://localhost:8080/remote-connect/user1/secret (again, the 1 here should match with the matchID)
+10. alternativly, you can create a remote or follow-match on a remote device on the same network on http://<ip of the server>:8080/
