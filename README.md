@@ -28,8 +28,6 @@ The master will always contain the latest version
  For this we need security in such a way that the create of a match is the owner of the match.
 - *Lesson 8 - Front-end mockup:* Here we start with a basic mockup in Angular 
 - *Lesson 9 - Front-end implement new match:* The implementation of the "new match" form 
-
-## next lessons
 - *Lesson 10 - Front-end implement follow-match:* First basic implementation of the scoreboard 
 - *Lesson 11 - Front-end remote control:* Implementing the remote control
 - *Lesson 12 - Front-end fast login:* an url containing username/password for a match so that a remote control can 
@@ -48,4 +46,4 @@ A first working beta version is now included.
 7. open another window on http://localhost:8080/follow-match/1 (where 1 is the number you find on the remote control)
 8. when you hit the buttons on the remote control, the scoreboard should update
 9. you can open a second registered remote control http://localhost:8080/remote-connect/user1/secret (again, the 1 here should match with the matchID)
-10. alternativly, you can create a remote or follow-match on a remote device on the same network on http://<ip of the server>:8080/
+10. alternativly, you can create a remote or follow-match on a remote device on the same network on http://**ip of the server**:8080/
