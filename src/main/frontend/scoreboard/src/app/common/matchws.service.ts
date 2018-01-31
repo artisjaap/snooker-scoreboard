@@ -1,10 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class MatchWsService {
-  private serverUrl = 'http://localhost:8080/matchsocket'
+  private serverUrl = environment.wsEndpoint;
   private stompClient;
 
   constructor(){
@@ -34,8 +35,20 @@ export class MatchWsService {
     this.stompClient.disconnect();
   }
 
-  sendMessage(points, matchId){
-    this.stompClient.send("/app/match/" + matchId , {}, JSON.stringify({points:points, matchId:matchId}));
+  addPoints(points, matchId){
+    this.sendMessage(matchId, {action : "ADD_POINTS", matchId : matchId, points : points});
+  }
+
+  changeTurn( matchId){
+    this.sendMessage(matchId, {action : "CHANGE_TURN", matchId : matchId});
+  }
+
+  startNewFrame(matchId) {
+    this.sendMessage(matchId, {action : "START_NEW_FRAME", matchId : matchId});
+  }
+
+  private sendMessage(matchId, message){
+    this.stompClient.send("/app/match/" + matchId , {}, JSON.stringify(message));
   }
 
   isConnected() : boolean{

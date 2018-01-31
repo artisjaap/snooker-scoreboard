@@ -6,12 +6,15 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MatchResponse} from "./MatchResponse";
 import {NewMatchResponse} from "./NewMatchResponse";
 import {CurrentFrameResponse} from "./CurrentFrameResponse";
+import {environment} from "../../environments/environment";
+
 
 @Injectable()
 export class MatchService {
   private matchData = {jwtToken: "", matchId: 0};
+  private apiUrl = environment.serverUrl;
 
-  constructor(private httpClient:HttpClient, @Inject('API_URL') private apiUrl: string) {
+  constructor(private httpClient:HttpClient) {
     this.resetTokenFromLocalStorage();
   }
 
@@ -46,7 +49,7 @@ export class MatchService {
   }
 
   public changeTurn():Observable<CurrentFrameResponse>{
-    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure//api/match/"+ this.matchData.matchId +"/change-turn"
+    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure/api/match/"+ this.matchData.matchId +"/change-turn"
       , {}
       , {headers: {'Authorization': this.matchData.jwtToken}}
     );
@@ -61,7 +64,7 @@ export class MatchService {
   }
 
   public newFrame():Observable<CurrentFrameResponse>{
-    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "/secure/api/match/"+ this.matchData.matchId +"/new-frame"
+    return this.httpClient.put<CurrentFrameResponse>(this.apiUrl + "secure/api/match/"+ this.matchData.matchId +"/new-frame"
       , {}
       , {headers: {'Authorization': this.matchData.jwtToken}}
     );
@@ -74,7 +77,7 @@ export class MatchService {
   public loginWith(username:string, password:string) : Observable<any>{
     let subject:BehaviorSubject<NewMatchResponse> = new BehaviorSubject(new NewMatchResponse());
 
-    this.httpClient.get(this.apiUrl + "/public/api/login/" + username + "/" + password)
+    this.httpClient.get(this.apiUrl + "public/api/login/" + username + "/" + password)
       .subscribe((response:NewMatchResponse) => {
         this.matchData.jwtToken = "Bearer " + response.jwtToken;
         this.matchData.matchId = response.matchId;

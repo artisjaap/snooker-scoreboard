@@ -9,6 +9,7 @@ public class MatchSummaryTO {
     private int framesWonPlayer2;
     private int highestBreakPlayer1;
     private int highestBreakPlayer2;
+    private int numberOfFrames;
     private CurrentFrameTO currentFrame;
 
     public int matchId() {
@@ -39,6 +40,10 @@ public class MatchSummaryTO {
         return highestBreakPlayer2;
     }
 
+    public int numberOfFrames() {
+        return numberOfFrames;
+    }
+
     public CurrentFrameTO currentFrame() {
         return currentFrame;
     }
@@ -52,6 +57,7 @@ public class MatchSummaryTO {
         highestBreakPlayer1 = builder.highestBreakPlayer1;
         highestBreakPlayer2 = builder.highestBreakPlayer2;
         currentFrame = builder.currentFrame;
+        numberOfFrames = builder.numberOfFrames;
     }
 
     public static Builder newBuilder() {
@@ -67,6 +73,7 @@ public class MatchSummaryTO {
         private int framesWonPlayer2;
         private int highestBreakPlayer1;
         private int highestBreakPlayer2;
+        private int numberOfFrames;
         private CurrentFrameTO currentFrame;
 
         private Builder() {
@@ -74,6 +81,11 @@ public class MatchSummaryTO {
 
         public Builder withMatchId(int val) {
             matchId = val;
+            return this;
+        }
+
+        public Builder withNumberOfFrames(int val) {
+            numberOfFrames = val;
             return this;
         }
 

@@ -30,6 +30,8 @@ public class MatchController {
     @Autowired
     private AddPoints addPoints;
 
+
+
     @RequestMapping(value = "/api/match/{matchId}/new-frame", method = RequestMethod.PUT)
     public @ResponseBody
     ResponseEntity<CurrentFrameResponse> newFrame(@PathVariable Integer matchId){

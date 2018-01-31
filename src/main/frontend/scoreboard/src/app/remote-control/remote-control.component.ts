@@ -33,19 +33,15 @@ export class RemoteControlComponent implements OnInit {
     //   this.currentFrame = data;
     // });
 
-    this.matchWsService.sendMessage(points, this.matchId);
+    this.matchWsService.addPoints(points, this.matchId);
   }
 
   public changeTurn() {
-    this.matchService.changeTurn().subscribe((data:CurrentFrameResponse)=>{
-      this.currentFrame = data;
-    });
+    this.matchWsService.changeTurn(this.matchId);
   }
 
   public newFrame() {
-    this.matchService.newFrame().subscribe((data:CurrentFrameResponse)=>{
-      this.currentFrame = data;
-    });
+    this.matchWsService.startNewFrame(this.matchId);
   }
 
   isConnected():boolean {

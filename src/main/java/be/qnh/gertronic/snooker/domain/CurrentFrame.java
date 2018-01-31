@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "CURRENT_FRAME")
 public class CurrentFrame extends AbstractEntity {
+    private static int COLORED_BALLS_TOTAL = 27;
 
     @Column(name = "SCORE_PLAYER_1")
     private int scorePlayer1 = 0;
@@ -29,6 +30,22 @@ public class CurrentFrame extends AbstractEntity {
 
     @Column(name = "FRAME_END")
     private LocalDateTime frameEnd;
+
+    @Column(name = "HIGHEST_BREAK_PLAYER_1")
+    private int highestBreakPlayer1 = 0;
+
+    @Column(name = "HIGHEST_BREAK_PLAYER_2")
+    private int highestBreakPlayer2 = 0;
+
+    @Column(name = "LAST_BREAK_PLAYER_1")
+    private int lastBreakPlayer1 = 0;
+
+    @Column(name = "LAST_BREAK_PLAYER_2")
+    private int lastBreakPlayer2 = 0;
+
+    private int ahead() {
+        return Math.abs(scorePlayer1 - scorePlayer2);
+    }
 
     protected CurrentFrame() {}
 
@@ -109,6 +126,38 @@ public class CurrentFrame extends AbstractEntity {
         return frameEnd;
     }
 
+    public int getHighestBreakPlayer1() {
+        return highestBreakPlayer1;
+    }
+
+    public void setHighestBreakPlayer1(int highestBreakPlayer1) {
+        this.highestBreakPlayer1 = highestBreakPlayer1;
+    }
+
+    public int getHighestBreakPlayer2() {
+        return highestBreakPlayer2;
+    }
+
+    public void setHighestBreakPlayer2(int highestBreakPlayer2) {
+        this.highestBreakPlayer2 = highestBreakPlayer2;
+    }
+
+    public int getLastBreakPlayer1() {
+        return lastBreakPlayer1;
+    }
+
+    public void setLastBreakPlayer1(int lastBreakPlayer1) {
+        this.lastBreakPlayer1 = lastBreakPlayer1;
+    }
+
+    public int getLastBreakPlayer2() {
+        return lastBreakPlayer2;
+    }
+
+    public void setLastBreakPlayer2(int lastBreakPlayer2) {
+        this.lastBreakPlayer2 = lastBreakPlayer2;
+    }
+
     public void setFrameEnd(LocalDateTime frameEnd) {
         this.frameEnd = frameEnd;
     }
@@ -130,7 +179,17 @@ public class CurrentFrame extends AbstractEntity {
         }
 
         currentBreak += points;
+        updateLastBreak();
+        updateHighestBreak();
         updatePointsLeft(points);
+    }
+
+    private void updateHighestBreak() {
+        if(currentPlayer == 1 && currentBreak > highestBreakPlayer1){
+            highestBreakPlayer1 = currentBreak;
+        }else if(currentPlayer == 2 && currentBreak > highestBreakPlayer2){
+            highestBreakPlayer2 = currentBreak;
+        }
     }
 
     private void updatePointsLeft(int points) {
@@ -143,8 +202,72 @@ public class CurrentFrame extends AbstractEntity {
     }
 
     public void changeTurn() {
-        currentPlayer = currentPlayer == 1 ? 2 : 1;
+        resetBreak();
+        changeActivePlayer();
+    }
+
+    private void updateLastBreak() {
+        if(currentBreak > 1){
+            if(currentPlayer == 1){
+                lastBreakPlayer1 = currentBreak;
+            }else{
+                lastBreakPlayer2 = currentBreak;
+            }
+        }
+    }
+
+    private void resetBreak() {
         currentBreak = 0;
+    }
+
+    private void changeActivePlayer() {
+        currentPlayer = currentPlayer == 1 ? 2 : 1;
+    }
+
+    public Integer minScoreCurrentPlayer() {
+        if(currentPlayer == 1){
+            return scorePlayer1 + calculateNumberOfReds() + COLORED_BALLS_TOTAL;
+        }else {
+            return scorePlayer2 + calculateNumberOfReds() + COLORED_BALLS_TOTAL;
+        }
+    }
+
+    public Integer maxScoreCurrentPlayer() {
+        if(currentPlayer == 1){
+            return scorePlayer1 + pointsLeft;
+        }else {
+            return scorePlayer2 + pointsLeft;
+        }
+    }
+
+    public Integer safeScoreCurrentPlayer() {
+        if(currentPlayer == 1){
+            return SafeScoreSimulator.newBuilder()
+                    .withScore1(scorePlayer1)
+                    .withScore2(scorePlayer2)
+                    .withScoreLeft(pointsLeft)
+                    .calculate();
+        }else {
+            return SafeScoreSimulator.newBuilder()
+                    .withScore1(scorePlayer2)
+                    .withScore2(scorePlayer1)
+                    .withScoreLeft(pointsLeft)
+                    .calculate();
+        }
+    }
+
+    private int calculateNumberOfReds() {
+        return (pointsLeft - COLORED_BALLS_TOTAL) / 8;
+    }
+
+    public boolean currentPlayerAhead() {
+        return (currentPlayer == 1 && scorePlayer1 > scorePlayer2) ||
+                (currentPlayer == 2 && scorePlayer2 > scorePlayer1);
+    }
+
+    public int absoluteScoreDifference() {
+        return Math.abs(scorePlayer1 - scorePlayer2);
+
     }
 
 

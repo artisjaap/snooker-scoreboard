@@ -27,6 +27,7 @@ public class MatchSummary {
                 .withPlayer1(PlayerToAssembler.assembleTo(match.getPlayer1()))
                 .withPlayer2(PlayerToAssembler.assembleTo(match.getPlayer2()))
                 .withMatchId(match.getId())
+                .withNumberOfFrames(match.getNumberOfFrames())
                 .withCurrentFrame(match.gameInProgrogress().map(CurrentFrameToAssembler::assembleTo).orElse(null))
                 .build();
 

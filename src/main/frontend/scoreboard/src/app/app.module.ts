@@ -43,8 +43,7 @@ const routes:Routes = [
   ],
   providers: [CustomHttpService,
     MatchService,
-    MatchWsService,
-    { provide: 'API_URL', useValue: 'http://localhost:8080/' }
+    MatchWsService
   ],
   bootstrap: [AppComponent]
 })

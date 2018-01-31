@@ -1,20 +1,35 @@
 
 <div class="scoreboard" style="display: flex;">
-  <div></div>
+  <div>
+    <div style="display: flex; flex-direction: column">
+      <div style="color:black;background-color: cornflowerblue; width: 20px; height: 30px">
+        {{match?.currentFrame?.minMax?.maxScore}}
+      </div>
+      <div style="color:black;display:flex;align-items: center ;background-color:yellowgreen; width: 20px; height: 100px">
+        {{match?.currentFrame?.minMax?.saveScore}}
+      </div>
+      <div style="color:black;background-color: cornflowerblue; width: 20px; height: 30px">
+        {{match?.currentFrame?.minMax?.minScore}}
+      </div>
+    </div>
+
+  </div>
   <div style="display:flex; flex:1; justify-content: center; ">
     <div style="display:flex; flex-direction: column; justify-content: center">
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px; font-size: 1.2em; color: yellowgreen">{{match?.player1?.firstName + ' ' + match?.player1?.lastName}}</div>
-        <div style="margin: 3px 15px; color:tomato">Best of ***</div>
-        <div style="margin: 3px 15px;  font-size: 1.2em">{{match?.player2?.firstName + ' ' + match?.player2?.lastName}}</div>
+        <div style="margin: 3px 15px; font-size: 1.2em; " [ngClass]="{'active' : match?.currentFrame?.currentPlayer === 1}">
+          {{match?.player1?.firstName + ' ' + match?.player1?.lastName}}</div>
+        <div style="margin: 3px 15px; color:tomato">Best of {{match?.numberOfFrames}}</div>
+        <div style="margin: 3px 15px;  font-size: 1.2em" [ngClass]="{'active' : match?.currentFrame?.currentPlayer === 2}">
+          {{match?.player2?.firstName + ' ' + match?.player2?.lastName}}</div>
       </div>
 
 
 
       <div style="display: flex; flex-direction: row; justify-content: center">
-        <div style="margin: 3px 15px">***</div>
+        <div style="margin: 3px 15px">{{match?.currentFrame?.latestBreakPlayer1}}</div>
         <div style="margin: 3px 15px; ">Last break</div>
-        <div style="margin: 3px 15px">***</div>
+        <div style="margin: 3px 15px">{{match?.currentFrame?.latestBreakPlayer2}}</div>
       </div>
 
       <div style="display: flex; flex-direction: row; justify-content: center">
@@ -30,13 +45,13 @@
       </div>
 
       <div style="display: flex; flex-direction: row; ">
-        <div style="display:flex; flex:1; justify-content: flex-start">*** ahead</div>
+        <div style="display:flex; flex:1; justify-content: flex-start">{{match?.currentFrame?.scoreDifference}} {{match?.currentFrame?.currentPlayerAhead?'Ahead':'Behind'}}</div>
         <div style="display:flex; flex:1; justify-content: flex-end">{{match?.currentFrame?.pointsLeft}} remaining</div>
       </div>
     </div>
 
   </div>
-  <div [routerLink]="['/remote-control']">remote</div>
+
 
 
   <div class="status">
@@ -47,6 +62,7 @@
     <div>
       <span [routerLink]="['/follow-match/', matchId]">follow match</span>
       <span [routerLink]="['/create-match']">new match</span>
+      <span [routerLink]="['/remote-control']">remote</span>
     </div>
 
   </div>

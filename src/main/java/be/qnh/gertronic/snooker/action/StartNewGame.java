@@ -1,5 +1,6 @@
 package be.qnh.gertronic.snooker.action;
 
+import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
 import be.qnh.gertronic.snooker.domain.Match;
 import be.qnh.gertronic.snooker.domain.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,13 @@ public class StartNewGame {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private MatchSummary matchSummary;
+
     @Transactional
-    public void forMatch(int matchId){
+    public MatchSummaryTO forMatch(int matchId){
         Match match = matchRepository.findOne(matchId);
         match.startNewGame();
+        return matchSummary.forMatch(matchId);
     }
 }

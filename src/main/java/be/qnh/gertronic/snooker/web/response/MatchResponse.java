@@ -14,6 +14,7 @@ public class MatchResponse {
     private int framesWonPlayer2;
     private int highestBreakPlayer1;
     private int highestBreakPlayer2;
+    private int numberOfFrames;
     private CurrentFrameResponse currentFrame;
 
     protected MatchResponse(){}
@@ -46,6 +47,10 @@ public class MatchResponse {
         return highestBreakPlayer2;
     }
 
+    public int getNumberOfFrames() {
+        return numberOfFrames;
+    }
+
     public CurrentFrameResponse getCurrentFrame() {
         return currentFrame;
     }
@@ -59,6 +64,7 @@ public class MatchResponse {
         highestBreakPlayer1 = builder.highestBreakPlayer1;
         highestBreakPlayer2 = builder.highestBreakPlayer2;
         currentFrame = builder.currentFrame;
+        numberOfFrames = builder.numberOfFrames;
     }
 
     public static Builder newBuilder() {
@@ -75,6 +81,7 @@ public class MatchResponse {
                 .withPlayer1(PlayerResponse.from(summaryTO.player1()))
                 .withPlayer2(PlayerResponse.from(summaryTO.player2()))
                 .withCurrentFrame(CurrentFrameResponse.from(summaryTO.currentFrame()))
+                .withNumberOfFrames(summaryTO.numberOfFrames())
                 .build();
     }
 
@@ -87,6 +94,7 @@ public class MatchResponse {
         private int framesWonPlayer2;
         private int highestBreakPlayer1;
         private int highestBreakPlayer2;
+        private int numberOfFrames;
         private CurrentFrameResponse currentFrame;
 
         private Builder() {
@@ -124,6 +132,11 @@ public class MatchResponse {
 
         public Builder withHighestBreakPlayer2(int val) {
             highestBreakPlayer2 = val;
+            return this;
+        }
+
+        public Builder withNumberOfFrames(int val) {
+            numberOfFrames = val;
             return this;
         }
 

@@ -11,6 +11,13 @@ public class CurrentFrameResponse {
     private int currentBreak;
     private int currentPlayer;
     private int pointsLeft;
+    private int highestBreakPlayer1;
+    private int highestBreakPlayer2;
+    private int latestBreakPlayer1;
+    private int latestBreakPlayer2;
+    private CandlePercentResponse minMax;
+    private boolean currentPlayerAhead;
+    private int scoreDifference;
 
     public CurrentFrameResponse(){}
 
@@ -34,12 +41,47 @@ public class CurrentFrameResponse {
         return pointsLeft;
     }
 
+    public int getHighestBreakPlayer1() {
+        return highestBreakPlayer1;
+    }
+
+    public int getHighestBreakPlayer2() {
+        return highestBreakPlayer2;
+    }
+
+    public int getLatestBreakPlayer1() {
+        return latestBreakPlayer1;
+    }
+
+    public int getLatestBreakPlayer2() {
+        return latestBreakPlayer2;
+    }
+
+    public int getScoreDifference() {
+        return scoreDifference;
+    }
+
+    public boolean isCurrentPlayerAhead() {
+        return currentPlayerAhead;
+    }
+
+    public CandlePercentResponse getMinMax() {
+        return minMax;
+    }
+
     private CurrentFrameResponse(Builder builder) {
         scorePlayer1 = builder.scorePlayer1;
         scorePlayer2 = builder.scorePlayer2;
         currentBreak = builder.currentBreak;
         currentPlayer = builder.currentPlayer;
         pointsLeft = builder.pointsLeft;
+        highestBreakPlayer1 = builder.highestBreakPlayer1;
+        highestBreakPlayer2 = builder.highestBreakPlayer2;
+        latestBreakPlayer1 = builder.latestBreakPlayer1;
+        latestBreakPlayer2 = builder.latestBreakPlayer2;
+        minMax = builder.minMax;
+        currentPlayerAhead = builder.currentPlayerAhead;
+        scoreDifference = builder.scoreDifference;
     }
 
     public static CurrentFrameResponse from(CurrentFrameTO currentFrameTO) {
@@ -49,6 +91,13 @@ public class CurrentFrameResponse {
                 .withPointsLeft(currentFrameTO.pointsLeft())
                 .withScorePlayer1(currentFrameTO.scorePlayer1())
                 .withScorePlayer2(currentFrameTO.scorePlayer2())
+                .withLatestBreakPlayer1(currentFrameTO.lastBreakPlayer1())
+                .withLatestBreakPlayer2(currentFrameTO.lastBreakPlayer2())
+                .withHighestBreakPlayer1(currentFrameTO.highestBreakPlayer1())
+                .withHighestBreakPlayer2(currentFrameTO.highestBreakPlayer2())
+                .withMinMax(CandlePercentResponse.from(currentFrameTO.minMax()))
+                .withCurrentPlayerAhead(currentFrameTO.currentPlayerAhead())
+                .withScoreDifference(currentFrameTO.scoreDifference())
                 .build();
     }
 
@@ -63,6 +112,13 @@ public class CurrentFrameResponse {
         private int currentBreak;
         private int currentPlayer;
         private int pointsLeft;
+        private int highestBreakPlayer1;
+        private int highestBreakPlayer2;
+        private int latestBreakPlayer1;
+        private int latestBreakPlayer2;
+        private boolean currentPlayerAhead;
+        private int scoreDifference;
+        private CandlePercentResponse minMax;
 
         private Builder() {
         }
@@ -89,6 +145,41 @@ public class CurrentFrameResponse {
 
         public Builder withPointsLeft(int val) {
             pointsLeft = val;
+            return this;
+        }
+
+        public Builder withHighestBreakPlayer1(int val) {
+            highestBreakPlayer1 = val;
+            return this;
+        }
+
+        public Builder withHighestBreakPlayer2(int val) {
+            highestBreakPlayer2 = val;
+            return this;
+        }
+
+        public Builder withLatestBreakPlayer1(int val) {
+            latestBreakPlayer1 = val;
+            return this;
+        }
+
+        public Builder withLatestBreakPlayer2(int val) {
+            latestBreakPlayer2 = val;
+            return this;
+        }
+
+        public Builder withCurrentPlayerAhead(boolean val) {
+            currentPlayerAhead = val;
+            return this;
+        }
+
+        public Builder withScoreDifference(int val) {
+            scoreDifference = val;
+            return this;
+        }
+
+        public Builder withMinMax(CandlePercentResponse val) {
+            minMax = val;
             return this;
         }
 
