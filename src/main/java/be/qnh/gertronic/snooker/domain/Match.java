@@ -129,6 +129,12 @@ public class Match extends AbstractEntity{
         gameInProgrogress().ifPresent(CurrentFrame::changeTurn);
     }
 
+    public void addFault(int points) {
+        gameInProgrogress().ifPresent(currentFrame1 -> {
+            currentFrame.addFault(points);
+        });
+    }
+
     public static final class Builder {
         private Player player1;
         private Player player2;

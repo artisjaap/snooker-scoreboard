@@ -1,0 +1,14 @@
+.splash-link {
+  background-color: #1c94c4;
+  font-size:2em;
+  padding: 10px;
+  text-align: center;
+  margin: 5px 0;
+}
+
+
+.splash-link a {
+  color: white;
+  text-decoration: none;
+
+}

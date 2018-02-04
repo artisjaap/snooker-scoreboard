@@ -172,16 +172,20 @@ public class CurrentFrame extends AbstractEntity {
     }
 
     public void addPoints(int points) {
-        if(currentPlayer == 1){
-            scorePlayer1 += points;
-        }else {
-            scorePlayer2 += points;
-        }
+        increasePointsOfCurrentPlayer(points);
 
         currentBreak += points;
         updateLastBreak();
         updateHighestBreak();
         updatePointsLeft(points);
+    }
+
+    private void increasePointsOfCurrentPlayer(int points) {
+        if(currentPlayer == 1){
+            scorePlayer1 += points;
+        }else {
+            scorePlayer2 += points;
+        }
     }
 
     private void updateHighestBreak() {
@@ -268,6 +272,11 @@ public class CurrentFrame extends AbstractEntity {
     public int absoluteScoreDifference() {
         return Math.abs(scorePlayer1 - scorePlayer2);
 
+    }
+
+    public void addFault(int points) {
+        changeTurn();
+        increasePointsOfCurrentPlayer(points);
     }
 
 

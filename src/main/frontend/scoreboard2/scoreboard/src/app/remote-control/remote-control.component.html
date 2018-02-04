@@ -1,0 +1,68 @@
+<div class="remote">
+  <div class="info">
+    <div>
+      <span [ngClass]="{'active' : matchDetail?.currentFrame?.currentPlayer === 1}">
+        {{matchDetail?.player1?.firstName}}
+        {{matchDetail?.player1?.lastName}}
+        ({{matchDetail?.framesWonPlayer1}})
+
+        {{matchDetail?.currentFrame?.scorePlayer1}}
+      </span>
+      Vs
+      <span [ngClass]="{'active' : matchDetail?.currentFrame?.currentPlayer === 2}">
+
+        {{matchDetail?.currentFrame?.scorePlayer2}}
+
+        ({{matchDetail?.framesWonPlayer2}})
+        {{matchDetail?.player1?.firstName}}
+        {{matchDetail?.player1?.lastName}}
+
+      </span>
+    </div>
+    <div>
+      Break: {{matchDetail?.currentFrame?.currentBreak}} points left: {{matchDetail?.currentFrame?.pointsLeft}}
+    </div>
+  </div>
+  <div *ngIf="mode=='NORMAL'">
+    <div class="controls" >
+      <div class="scorebtn red" (click)="addPoints(1)">1</div>
+      <div class="scorebtn yellow" (click)="addPoints(2)">2</div>
+      <div class="scorebtn green" (click)="addPoints(3)">3</div>
+      <div class="scorebtn brown" (click)="addPoints(4)">4</div>
+      <div class="scorebtn blue" (click)="addPoints(5)">5</div>
+      <div class="scorebtn pink" (click)="addPoints(6)">6</div>
+      <div class="scorebtn black" (click)="addPoints(7)">7</div>
+    </div>
+    <div class="controls">
+      <div class="scorebtn cornflower" (click)="changeTurn()">Turn</div>
+      <div class="scorebtn cornflower" (click)="newFrame()">New</div>
+      <div class="scorebtn cornflower" (click)="faultMode()">-</div>
+    </div>
+  </div>
+  <div *ngIf="mode=='ERROR'">
+    <div class="controls" >
+      <div class="scorebtn white" (click)="addFault(4)">4</div>
+      <div class="scorebtn blue" (click)="addFault(5)">5</div>
+      <div class="scorebtn pink" (click)="addFault(6)">6</div>
+      <div class="scorebtn black" (click)="addFault(7)">7</div>
+    </div>
+    <div class="controls">
+      <div class="scorebtn cornflower" (click)="normalMode()">+</div>
+    </div>
+  </div>
+
+  <div class="status">
+    <div>
+      <span class="fa fa-globe"></span>
+      <div [ngClass]="{'connected' : isConnected()}">Connected? {{isConnected()}}</div>
+    </div>
+    <div>
+      Match # {{matchId}}
+    </div>
+    <div>
+      <span [routerLink]="['/follow-match/', matchId]">follow match</span>
+      <span [routerLink]="['/create-match']">new match</span>
+    </div>
+
+  </div>
+</div>
