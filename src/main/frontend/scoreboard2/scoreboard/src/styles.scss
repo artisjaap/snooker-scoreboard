@@ -1,0 +1,102 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  color: #1c94c4;
+
+}
+
+.numberbtn{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  box-shadow: 1px 1px 15px white;
+  border: 1px solid white;
+}
+
+.scorebtn {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  font-size: 2em;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  box-shadow: 1px 1px 15px white;
+
+&.red {
+   background-color: red;
+   color: white;
+ }
+
+&.yellow {
+   border-color: yellow;
+   background-color: yellow;
+   color: black;
+ }
+
+&.green {
+   border-color: green;
+   background-color: green;
+   color: white;
+ }
+
+&.brown {
+   border-color: saddlebrown;
+   background-color: saddlebrown;
+   color: white;
+ }
+&.blue {
+   border-color: blue;
+   background-color: blue;
+   color: white;
+ }
+&.pink {
+   border-color: deeppink;
+   background-color: deeppink;
+   color: white;
+ }
+&.black {
+   border-color: black;
+   background-color: black;
+   color: white;
+ }
+
+&.cornflower {
+   background-color: cornflowerblue;
+   color: white;
+ }
+}
+
+.status {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: lightblue;
+
+  span {
+    margin: 0 10px;
+  }
+  .connected{
+    color: greenyellow;
+  }
+  .disconnected{
+    color: tomato;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

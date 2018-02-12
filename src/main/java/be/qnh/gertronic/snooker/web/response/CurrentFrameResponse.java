@@ -1,6 +1,7 @@
 package be.qnh.gertronic.snooker.web.response;
 
 import be.qnh.gertronic.snooker.action.to.CurrentFrameTO;
+import be.qnh.gertronic.snooker.domain.ScoreBreakdown;
 
 /**
  * Created by stijn on 19/01/18.
@@ -8,7 +9,7 @@ import be.qnh.gertronic.snooker.action.to.CurrentFrameTO;
 public class CurrentFrameResponse {
     private int scorePlayer1;
     private int scorePlayer2;
-    private int currentBreak;
+    private BreakResponse currentBreak;
     private int currentPlayer;
     private int pointsLeft;
     private int highestBreakPlayer1;
@@ -18,6 +19,7 @@ public class CurrentFrameResponse {
     private CandlePercentResponse minMax;
     private boolean currentPlayerAhead;
     private int scoreDifference;
+    private ScoreBreakdown scoreBreakdown;
 
     public CurrentFrameResponse(){}
 
@@ -29,7 +31,7 @@ public class CurrentFrameResponse {
         return scorePlayer2;
     }
 
-    public int getCurrentBreak() {
+    public BreakResponse getCurrentBreak() {
         return currentBreak;
     }
 
@@ -69,6 +71,10 @@ public class CurrentFrameResponse {
         return minMax;
     }
 
+    public ScoreBreakdown getScoreBreakdown() {
+        return scoreBreakdown;
+    }
+
     private CurrentFrameResponse(Builder builder) {
         scorePlayer1 = builder.scorePlayer1;
         scorePlayer2 = builder.scorePlayer2;
@@ -82,11 +88,12 @@ public class CurrentFrameResponse {
         minMax = builder.minMax;
         currentPlayerAhead = builder.currentPlayerAhead;
         scoreDifference = builder.scoreDifference;
+        scoreBreakdown = ScoreBreakdown.from(pointsLeft);
     }
 
     public static CurrentFrameResponse from(CurrentFrameTO currentFrameTO) {
         return CurrentFrameResponse.newBuilder()
-                .withCurrentBreak(currentFrameTO.currentBreak())
+                .withCurrentBreak(BreakResponse.from(currentFrameTO.currentBreak()))
                 .withCurrentPlayer(currentFrameTO.currentPlayer())
                 .withPointsLeft(currentFrameTO.pointsLeft())
                 .withScorePlayer1(currentFrameTO.scorePlayer1())
@@ -109,7 +116,7 @@ public class CurrentFrameResponse {
     public static final class Builder {
         private int scorePlayer1;
         private int scorePlayer2;
-        private int currentBreak;
+        private BreakResponse currentBreak;
         private int currentPlayer;
         private int pointsLeft;
         private int highestBreakPlayer1;
@@ -133,7 +140,7 @@ public class CurrentFrameResponse {
             return this;
         }
 
-        public Builder withCurrentBreak(int val) {
+        public Builder withCurrentBreak(BreakResponse val) {
             currentBreak = val;
             return this;
         }

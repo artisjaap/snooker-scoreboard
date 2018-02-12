@@ -4,7 +4,7 @@ public class CurrentFrameTO {
 
     private int scorePlayer1;
     private int scorePlayer2;
-    private int currentBreak;
+    private BreakTO currentBreak;
     private int currentPlayer;
     private int pointsLeft;
     private int lastBreakPlayer1;
@@ -39,7 +39,7 @@ public class CurrentFrameTO {
         return scorePlayer2;
     }
 
-    public int currentBreak() {
+    public BreakTO currentBreak() {
         return currentBreak;
     }
 
@@ -87,7 +87,7 @@ public class CurrentFrameTO {
     public static final class Builder {
         private int scorePlayer1;
         private int scorePlayer2;
-        private int currentBreak;
+        private BreakTO currentBreak;
         private int currentPlayer;
         private int pointsLeft;
         private int lastBreakPlayer1;
@@ -111,7 +111,7 @@ public class CurrentFrameTO {
             return this;
         }
 
-        public Builder withCurrentBreak(int val) {
+        public Builder withCurrentBreak(BreakTO val) {
             currentBreak = val;
             return this;
         }

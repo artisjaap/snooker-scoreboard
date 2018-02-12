@@ -4,11 +4,13 @@ import be.qnh.gertronic.snooker.action.AuthenticateForMatch;
 import be.qnh.gertronic.snooker.action.CreateMatch;
 import be.qnh.gertronic.snooker.action.MatchSummary;
 import be.qnh.gertronic.snooker.action.StartNewGame;
+import be.qnh.gertronic.snooker.action.to.MatchFullSummaryTO;
 import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
 import be.qnh.gertronic.snooker.action.to.NewMatchTO;
 import be.qnh.gertronic.snooker.security.JwtTokenUtil;
 import be.qnh.gertronic.snooker.security.JwtUser;
 import be.qnh.gertronic.snooker.web.request.NewMatchRequest;
+import be.qnh.gertronic.snooker.web.response.MatchFullSummaryResponse;
 import be.qnh.gertronic.snooker.web.response.MatchResponse;
 import be.qnh.gertronic.snooker.web.response.NewMatchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,14 @@ public class MatchPublicController {
         MatchSummaryTO matchSummaryTO = matchSummary.forMatch(matchId);
         return ResponseEntity.ok(MatchResponse.from(matchSummaryTO));
     }
+
+    @RequestMapping(value = "/api/match/summary/{matchId}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<MatchFullSummaryResponse> matchSummary(@PathVariable Integer matchId){
+        MatchFullSummaryTO matchSummaryTO = matchSummary.forMatchFullSummary(matchId);
+        return ResponseEntity.ok(MatchFullSummaryResponse.from(matchSummaryTO));
+    }
+
 
     @RequestMapping(value = "/api/match/new", method = RequestMethod.POST)
     public @ResponseBody

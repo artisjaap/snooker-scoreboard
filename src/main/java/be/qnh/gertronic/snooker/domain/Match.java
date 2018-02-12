@@ -135,6 +135,19 @@ public class Match extends AbstractEntity{
         });
     }
 
+    public void decreaseRemaining(Integer value) {
+        gameInProgrogress().ifPresent(currentFrame1 -> {
+            currentFrame.decreaseRemaining(value);
+        });
+    }
+
+    public void forcePlayerScore(int player, int newScore) {
+        gameInProgrogress().ifPresent(currentFrame1 -> {
+            currentFrame.forcePlayerScore(player, newScore);
+        });
+
+    }
+
     public static final class Builder {
         private Player player1;
         private Player player2;

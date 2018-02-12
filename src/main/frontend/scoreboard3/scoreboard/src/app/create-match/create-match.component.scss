@@ -1,0 +1,49 @@
+.match {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0;
+}
+
+.row input {
+  flex: 1;
+  margin: 0 2px
+}
+
+form {
+
+  input {
+    border: 1px solid white;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    color: white;
+
+    &:focus {
+      border: 1px solid red;
+    }
+
+    &.ng-invalid {
+      border: 1px solid mediumvioletred;
+    }
+  }
+
+  .form-link{
+    width: 100%;
+    border: none;
+    color: white;
+    background-color: #1c94c4;
+    font-size:2em;
+    padding: 10px;
+    text-align: center;
+    margin: 5px 0;
+  }
+}
+
+
+

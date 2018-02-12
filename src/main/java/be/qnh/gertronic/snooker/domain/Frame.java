@@ -3,7 +3,6 @@ package be.qnh.gertronic.snooker.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.sql.Time;
 import java.time.LocalDateTime;
 
 /**
@@ -53,6 +52,13 @@ public class Frame extends AbstractEntity{
         this.scorePlayer2 = scorePlayer2;
     }
 
+    public LocalDateTime getFrameEnd() {
+        return frameEnd;
+    }
+
+    public LocalDateTime getFrameStart() {
+        return frameStart;
+    }
 
     public static final class Builder {
         private int scorePlayer1;

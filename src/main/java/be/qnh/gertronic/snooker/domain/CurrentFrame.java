@@ -1,13 +1,12 @@
 package be.qnh.gertronic.snooker.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "CURRENT_FRAME")
 public class CurrentFrame extends AbstractEntity {
+    private static int MAX_SCORE = 147;
     private static int COLORED_BALLS_TOTAL = 27;
 
     @Column(name = "SCORE_PLAYER_1")
@@ -19,11 +18,8 @@ public class CurrentFrame extends AbstractEntity {
     @Column(name = "CURRENT_PLAYER")
     private int currentPlayer = 1;
 
-    @Column(name = "CURRENT_BREAK")
-    private int currentBreak = 0;
-
     @Column(name = "POINTS_LEFT")
-    private int pointsLeft = 147;
+    private int pointsLeft = MAX_SCORE;
 
     @Column(name = "FRAME_START", nullable = false)
     private LocalDateTime frameStart;
@@ -43,6 +39,10 @@ public class CurrentFrame extends AbstractEntity {
     @Column(name = "LAST_BREAK_PLAYER_2")
     private int lastBreakPlayer2 = 0;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CURRENT_BREAK_ID")
+    private Break currentBreak = Break.create();
+
     private int ahead() {
         return Math.abs(scorePlayer1 - scorePlayer2);
     }
@@ -60,11 +60,11 @@ public class CurrentFrame extends AbstractEntity {
     }
 
     public static CurrentFrame newFrame() {
-        return newBuilder().withCurrentBreak(0)
+        return newBuilder().withCurrentBreak(Break.create())
                 .withScorePlayer1(0)
                 .withScorePlayer2(0)
                 .withCurrentPlayer(1)
-                .withPointsLeft(147)
+                .withPointsLeft(MAX_SCORE)
                 .withFrameStart(LocalDateTime.now())
                 .build();
 
@@ -98,11 +98,11 @@ public class CurrentFrame extends AbstractEntity {
         this.currentPlayer = currentPlayer;
     }
 
-    public int getCurrentBreak() {
+    public Break getCurrentBreak() {
         return currentBreak;
     }
 
-    public void setCurrentBreak(int currentBreak) {
+    public void setCurrentBreak(Break currentBreak) {
         this.currentBreak = currentBreak;
     }
 
@@ -174,7 +174,7 @@ public class CurrentFrame extends AbstractEntity {
     public void addPoints(int points) {
         increasePointsOfCurrentPlayer(points);
 
-        currentBreak += points;
+        currentBreak.addScore(points);
         updateLastBreak();
         updateHighestBreak();
         updatePointsLeft(points);
@@ -189,10 +189,10 @@ public class CurrentFrame extends AbstractEntity {
     }
 
     private void updateHighestBreak() {
-        if(currentPlayer == 1 && currentBreak > highestBreakPlayer1){
-            highestBreakPlayer1 = currentBreak;
-        }else if(currentPlayer == 2 && currentBreak > highestBreakPlayer2){
-            highestBreakPlayer2 = currentBreak;
+        if(currentPlayer == 1 && currentBreak.score() > highestBreakPlayer1){
+            highestBreakPlayer1 = currentBreak.score();
+        }else if(currentPlayer == 2 && currentBreak.score() > highestBreakPlayer2){
+            highestBreakPlayer2 = currentBreak.score();
         }
     }
 
@@ -211,17 +211,17 @@ public class CurrentFrame extends AbstractEntity {
     }
 
     private void updateLastBreak() {
-        if(currentBreak > 1){
+        if(currentBreak.score() > 1){
             if(currentPlayer == 1){
-                lastBreakPlayer1 = currentBreak;
+                lastBreakPlayer1 = currentBreak.score();
             }else{
-                lastBreakPlayer2 = currentBreak;
+                lastBreakPlayer2 = currentBreak.score();
             }
         }
     }
 
     private void resetBreak() {
-        currentBreak = 0;
+        currentBreak.reset();
     }
 
     private void changeActivePlayer() {
@@ -279,12 +279,26 @@ public class CurrentFrame extends AbstractEntity {
         increasePointsOfCurrentPlayer(points);
     }
 
+    public void decreaseRemaining(Integer value) {
+        this.pointsLeft = ScoreBreakdown.from(pointsLeft).minus(value).pointsRemaining();
+    }
+
+    public void forcePlayerScore(int player, int newScore) {
+        if(player == 1){
+            scorePlayer1 = newScore;
+        }else {
+            scorePlayer2 = newScore;
+        }
+        pointsLeft = MAX_SCORE;
+
+    }
+
 
     public static final class Builder {
         private int scorePlayer1;
         private int scorePlayer2;
         private int currentPlayer;
-        private int currentBreak;
+        private Break currentBreak;
         private int pointsLeft;
         private LocalDateTime frameStart;
         private LocalDateTime frameEnd;
@@ -307,7 +321,7 @@ public class CurrentFrame extends AbstractEntity {
             return this;
         }
 
-        public Builder withCurrentBreak(int val) {
+        public Builder withCurrentBreak(Break val) {
             currentBreak = val;
             return this;
         }

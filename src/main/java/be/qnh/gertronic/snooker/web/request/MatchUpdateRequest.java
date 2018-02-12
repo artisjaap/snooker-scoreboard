@@ -8,6 +8,8 @@ public class MatchUpdateRequest {
     private Integer matchId;
 
     private Integer points;
+    private Integer player;
+    
 
     public MatchAction getAction() {
         return action;
@@ -31,5 +33,9 @@ public class MatchUpdateRequest {
 
     public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public Integer getPlayer() {
+        return player;
     }
 }

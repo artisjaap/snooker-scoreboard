@@ -1,0 +1,27 @@
+<div style="text-align:center">
+  <h1>
+    Match Details (#ID {{matchDetails?.matchId}})
+  </h1>
+</div>
+
+<div style="display: flex; justify-content: center">
+  <div style="display: flex; flex-direction: column">
+    <div style="display: flex; flex-direction: row">
+      <div style="color:cornflowerblue; font-size: 60px; width: 400px; text-align: center">{{matchDetails?.player1.firstName}} {{matchDetails?.player1.lastName}}</div>
+      <div style="font-size: 25px; margin: 10px">{{matchDetails?.framesWonPlayer1}}</div>
+      <div  style="font-size: 20px">Vs</div>
+      <div style="font-size: 25px; margin: 10px">{{matchDetails?.framesWonPlayer2}}</div>
+      <div style="color:cornflowerblue; font-size: 60px; width: 400px; text-align: center">{{matchDetails?.player2.firstName}} {{matchDetails?.player2.lastName}}</div>
+    </div>
+
+    <div *ngFor="let f of matchDetails?.frames" style="display:flex; flex-direction: row">
+      <div style="font-size:50px; width: 435px; text-align: center">{{f.scorePlayer1 }}</div>
+      <div style="font-size:50px; width: 435px; text-align: center">{{f.scorePlayer2 }}</div>
+      <!--<span style="display:flex; margin: 10px">{{f.frameStart.hour}}:{{f.frameStart.minute}}:{{f.frameStart.second}}</span>-->
+      <!--<span style="display:flex; margin: 10px">{{f.frameStop.hour}}:{{f.frameStop.minute}}:{{f.frameStop.second}}</span>-->
+    </div>
+  </div>
+
+</div>
+
+

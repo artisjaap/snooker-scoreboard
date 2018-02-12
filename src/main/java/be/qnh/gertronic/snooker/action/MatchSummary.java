@@ -1,9 +1,7 @@
 package be.qnh.gertronic.snooker.action;
 
 
-import be.qnh.gertronic.snooker.action.to.CurrentFrameToAssembler;
-import be.qnh.gertronic.snooker.action.to.MatchSummaryTO;
-import be.qnh.gertronic.snooker.action.to.PlayerToAssembler;
+import be.qnh.gertronic.snooker.action.to.*;
 import be.qnh.gertronic.snooker.domain.Match;
 import be.qnh.gertronic.snooker.domain.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,22 @@ public class MatchSummary {
                 .withMatchId(match.getId())
                 .withNumberOfFrames(match.getNumberOfFrames())
                 .withCurrentFrame(match.gameInProgrogress().map(CurrentFrameToAssembler::assembleTo).orElse(null))
+                .build();
+
+    }
+
+    @Transactional
+    public MatchFullSummaryTO forMatchFullSummary(Integer matchId){
+        Match match = matchRepository.findOne(matchId);
+
+        return MatchFullSummaryTO.newBuilder()
+                .withFramesWonPlayer1(match.wonByPlayer1())
+                .withFramesWonPlayer2(match.wonByPlayer2())
+                .withPlayer1(PlayerToAssembler.assembleTo(match.getPlayer1()))
+                .withPlayer2(PlayerToAssembler.assembleTo(match.getPlayer2()))
+                .withMatchId(match.getId())
+                .withNumberOfFrames(match.getNumberOfFrames())
+                .withFramesPlayed(FrameToAssembler.assembleTo(match.getFramesPlayed()))
                 .build();
 
     }
