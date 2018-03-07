@@ -32,10 +32,10 @@ public class JwtTokenUtil implements Serializable {
     @Autowired
     private TimeProvider timeProvider;
 
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret:}")
     private String secret;
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.expiration:}")
     private Long expiration;
 
     public String getUsernameFromToken(String token) {

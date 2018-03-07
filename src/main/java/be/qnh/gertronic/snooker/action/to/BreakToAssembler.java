@@ -15,6 +15,7 @@ public class BreakToAssembler {
                 .withBlue(entity.getBrown())
                 .withPink(entity.getPink())
                 .withBlack(entity.getBlack())
+                .withTotal(entity.score())
                 .build();
 
     }

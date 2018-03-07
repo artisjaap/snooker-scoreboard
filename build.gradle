@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 
 group = 'be.qnh.gertronic.snooker'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 8
 
 repositories {
 	mavenCentral()

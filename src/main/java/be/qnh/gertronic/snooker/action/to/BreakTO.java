@@ -11,6 +11,7 @@ public class BreakTO {
     private final Integer blue;
     private final Integer pink;
     private final Integer black;
+    private final Integer total;
 
     public Integer getRed() {
         return red;
@@ -40,6 +41,10 @@ public class BreakTO {
         return black;
     }
 
+    public Integer getTotal() {
+        return total;
+    }
+
     private BreakTO(Builder builder) {
         red = builder.red;
         yellow = builder.yellow;
@@ -48,6 +53,7 @@ public class BreakTO {
         blue = builder.blue;
         pink = builder.pink;
         black = builder.black;
+        total = builder.total;
     }
 
     public static Builder newBuilder() {
@@ -63,6 +69,7 @@ public class BreakTO {
         private Integer blue;
         private Integer pink;
         private Integer black;
+        private Integer total;
 
         private Builder() {
         }
@@ -99,6 +106,11 @@ public class BreakTO {
 
         public Builder withBlack(Integer val) {
             black = val;
+            return this;
+        }
+
+        public Builder withTotal(Integer val) {
+            total = val;
             return this;
         }
 

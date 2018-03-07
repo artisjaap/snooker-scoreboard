@@ -13,6 +13,7 @@ public class BreakResponse {
     private final Integer blue;
     private final Integer pink;
     private final Integer black;
+    private final Integer total;
 
     public Integer getRed() {
         return red;
@@ -42,6 +43,10 @@ public class BreakResponse {
         return black;
     }
 
+    public Integer getTotal() {
+        return total;
+    }
+
     public static BreakResponse from(BreakTO to){
         return BreakResponse.newBuilder()
                 .withRed(to.getRed())
@@ -51,6 +56,7 @@ public class BreakResponse {
                 .withBlue(to.getBlue())
                 .withPink(to.getPink())
                 .withBlack(to.getBlack())
+                .withTotal(to.getTotal())
                 .build();
     }
 
@@ -62,6 +68,7 @@ public class BreakResponse {
         blue = builder.blue;
         pink = builder.pink;
         black = builder.black;
+        total = builder.total;
     }
 
     public static Builder newBuilder() {
@@ -77,6 +84,7 @@ public class BreakResponse {
         private Integer blue;
         private Integer pink;
         private Integer black;
+        private Integer total;
 
         private Builder() {
         }
@@ -113,6 +121,11 @@ public class BreakResponse {
 
         public Builder withBlack(Integer val) {
             black = val;
+            return this;
+        }
+
+        public Builder withTotal(Integer val) {
+            total = val;
             return this;
         }
 
